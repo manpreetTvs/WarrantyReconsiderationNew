@@ -1,0 +1,273 @@
+
+
+  <!-- <h4 class="custApprovalHead" style="background-color:#143E67 !important">DMS Call Log Deviation Process </h4>
+  <h4 class="redrow"></h4> -->
+  <div style="padding:20px">
+
+    <div class="divv">
+
+        <!-- <div class="flex align-middle" style="JUSTIFY-CONTENT: flex-end; margin-top: 10px;">
+            <button mat-button (click)="openFilter()">
+                <img src="assets/icons/filter.png" class="mr-30" alt="">
+            </button>
+
+        </div> -->
+   
+    <h4 style="font-size: 18px;padding:20px;color:#143e67;font-weight:800;top:20px;">DMS Call Log Approval</h4>
+    <!-- <div class="table"> -->
+        <div class="mat-elevation-z8">
+            <mat-table [dataSource]="dataSource" matSort>
+
+                <!-- Position Column -->
+                <ng-container matColumnDef="sNo">
+                    <mat-header-cell  *matHeaderCellDef mat-sort-header> S.No </mat-header-cell>
+                    <mat-cell  *matCellDef="let element;let i = index"  data-label="S.No"> {{i +1}} </mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="CalllogNo">
+                    <mat-header-cell  *matHeaderCellDef mat-sort-header> Call Log Number </mat-header-cell>
+                    <mat-cell  *matCellDef="let element"  data-label="Call Log Number"> {{element.CALL_LOG_ID}} </mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="dealer_id">
+                    <mat-header-cell  *matHeaderCellDef mat-sort-header> Dealer Id</mat-header-cell>
+                    <mat-cell  *matCellDef="let element"  data-label="Dealer Id"> {{element.DEALER_ID}} </mat-cell>
+                </ng-container>
+               
+                <ng-container matColumnDef="calllogtype">
+                    <mat-header-cell  *matHeaderCellDef mat-sort-header> Call Log Type</mat-header-cell>
+                    <mat-cell  *matCellDef="let element" data-label="Call Log Type"> {{element.CALL_LOG_TYPE_DESC}} </mat-cell>
+                </ng-container>
+                <!-- <ng-container matColumnDef="status">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Status</th>
+                    <td mat-cell *matCellDef="let element"> {{element.Status}} </td>
+                </ng-container> -->
+                <!-- <ng-container matColumnDef="pendingwith">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Pending With </th>
+                    <td mat-cell *matCellDef="let element"> {{element.Pending_With}} </td>
+                </ng-container>-->
+                <ng-container matColumnDef="pendingfrom">
+                    <mat-header-cell  *matHeaderCellDef mat-sort-header>Pending From </mat-header-cell>
+                    <mat-cell  *matCellDef="let element" data-label="Pending From "> {{element.Pending_From| date :'dd-MM-yyyy'}} </mat-cell>
+                </ng-container> 
+                <ng-container matColumnDef="noofcall">
+                    <mat-header-cell  *matHeaderCellDef mat-sort-header>No Of Calls </mat-header-cell>
+                    <mat-cell *matCellDef="let element" data-label="No Of Calls"> {{element.Count}} </mat-cell>
+                </ng-container>
+               
+                <ng-container matColumnDef="star">
+                    <mat-header-cell  *matHeaderCellDef mat-sort-header>Click Here </mat-header-cell>
+                    <mat-cell  *matCellDef="let element" > 
+                         <button mat-button (click)="getRecord(element)" style="color: blue;border: 0px; padding: 10px;background: transparent;">Click here for details
+                    </button> </mat-cell>
+                </ng-container>
+                
+              
+               
+                
+               
+                <!-- Star Column -->
+               
+                <mat-header-row  *matHeaderRowDef="displayedColumns;sticky: true"></mat-header-row>
+                <!-- <tr mat-footer-row *matFooterRowDef="displayedColumns; sticky: true"></tr> -->
+                <mat-row  *matRowDef="let row; columns: displayedColumns;"></mat-row>
+            </mat-table>
+            <mat-paginator [pageSizeOptions]="[5,10, 20, 30]" [pageSize]="pageSize" [pageIndex]="currentPage"
+                showFirstLastButtons (page)="handlePage($event)" [length]="totalSize"></mat-paginator>
+        </div>
+        <!-- <div [ngClass]="dataSource.filteredData.length<0" class="no-record">
+            <tr>No results found.</tr></div> -->
+    <!-- </div> -->
+
+    <div *ngIf="isSaleDate">
+        <h4 style="font-size: 16px;padding:20px;color:#143e67;font-weight:800;top:20px;">Sale date Change Report</h4>
+        <div style="margin-top:10px ;padding:20px">
+            <div class="mat-elevation-z8">
+                <mat-table [dataSource]="dataSourceSale" matSort >
+    
+                    <!-- Position Column -->
+                    <!-- <ng-container matColumnDef="sNo">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header > S.No </th>
+                        <td mat-cell *matCellDef="let element;let i = index"> {{i +1}} </td>
+                    </ng-container> -->
+                    <ng-container matColumnDef="dmsCalllogNo">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header> DMS Call Log No </mat-header-cell>
+                        <mat-cell  *matCellDef="let element" data-label="DMS Call Log No"> {{element.DMS_CALL_LOG_NO}} </mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="calllogtype">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header> JC No</mat-header-cell>
+                        <mat-cell *matCellDef="let element" data-label="JC No"> {{element.JOB_CARD_NO}} </mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="frameno">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header> Frame number</mat-header-cell>
+                        <mat-cell *matCellDef="let element" data-label="Frame number"> {{element.FRAME_NUMBER}} </mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="dmssaledate">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header>Entered Sale Date </mat-header-cell>
+                        <mat-cell *matCellDef="let element" data-label="Entered Sale Date"> {{element.DMS_SALE_DATE | date :'dd-MM-yyyy'}} </mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="actsaledate">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header>Actual Sale Date </mat-header-cell>
+                        <mat-cell *matCellDef="let element" data-label="Actual Sale Date"> {{element.SALE_DATE_TO_BE_CHANGED| date :'dd-MM-yyyy'}} </mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="deaRmks">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header >Dealer Remarks</mat-header-cell>
+                        <mat-cell *matCellDef="let element" data-label="Dealer Remarks"> {{element.REMARKS}} </mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="TM_EMPNO">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header >TM </mat-header-cell>
+                        <mat-cell *matCellDef="let element" data-label="TM"> {{element.TM_EMPNO}} </mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="TM_REMARKS" >
+                        <mat-header-cell *matHeaderCellDef mat-sort-header>TM Remarks </mat-header-cell>
+                        <mat-cell *matCellDef="let element" data-label="TM Remarks"> {{element.TM_REMARKS}} </mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="TM_APPR_DATE" >
+                        <mat-header-cell *matHeaderCellDef mat-sort-header>TM Approval Date </mat-header-cell>
+                        <mat-cell *matCellDef="let element" data-label="TM Approval Date "> {{(element.TM_APPR_DATE!=='0001-01-01T00:00:00')?(element.TM_APPR_DATE | date:'dd-MM-yyyy'):''}} </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="apprmks">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header>Remarks </mat-header-cell>
+                        <mat-cell *matCellDef="let element" data-label="Remarks">  <textarea 
+                             name="salereasonforrejection" class="form-control form-control-sm 
+                             mb-2 mr-sm-2" cols="30"
+                              rows="2" maxlength="30" style="margin:10px" [(ngModel)]="element.Remarks">
+
+                        </textarea> </mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="approver">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header>Forward To </mat-header-cell>
+                        <mat-cell *matCellDef="let element" data-label="Forward To"> <select  style="margin:10px"
+                             class="form-control form-control-sm mb-2 mr-sm-2"
+                              name="tmdrpdwn"  [(ngModel)]="element.EMPNO">
+                            
+                            <option *ngFor="let tm of TMList" [value]="tm.empno">{{ tm.empname }}</option>
+                          </select> </mat-cell>
+                    </ng-container>
+                    
+                    <ng-container matColumnDef="approve">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header>Approve </mat-header-cell>
+                        <mat-cell *matCellDef="let element" data-label="Approve"> 
+                             <button mat-button (click)="approve(element)" class="btn btn-success" style="font-size: 11px !important;"
+                            >Approve
+                        </button> </mat-cell>
+                    </ng-container>
+                   
+                    <ng-container matColumnDef="reject">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header>Reject </mat-header-cell>
+                        <mat-cell *matCellDef="let element" data-label="Reject"> 
+                             <button mat-button (click)="reject(element)" class="btn btn-danger" style="font-size: 11px !important;">Reject
+                        </button> </mat-cell>
+                    </ng-container>
+                   
+                    <!-- Star Column -->
+                   
+                    <mat-header-row *matHeaderRowDef="displayedSaleColumn;sticky: true"></mat-header-row>
+                    <!-- <tr mat-footer-row *matFooterRowDef="displayedColumns; sticky: true"></tr> -->
+                    <mat-row *matRowDef="let row; columns: displayedSaleColumn;" ></mat-row>
+                </mat-table>
+                <mat-paginator [pageSizeOptions]="[5,10, 20, 30]" [pageSize]="pageSize" [pageIndex]="currentPage"
+                    showFirstLastButtons (page)="handlePage($event)" [length]="totalSize"></mat-paginator>
+            </div>
+            <!-- <div [ngClass]="dataSource.filteredData.length<0" class="no-record">
+                <tr>No results found.</tr></div> -->
+        </div>
+    </div>
+    <div *ngIf="isKM">
+        <h4 style="font-size: 16px;padding:20px;color:#143e67;font-weight:800;top:20px;">KM Change Report</h4>
+     <div class="table"  style="margin-top:10px;padding:20px">
+            <div class="mat-elevation-z8">
+                <mat-table [dataSource]="dataSourceKM" matSort>
+    
+                    <!-- Position Column -->
+                    <ng-container matColumnDef="dmsCalllogNo">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header> DMS Call Log Number </mat-header-cell>
+                        <mat-cell *matCellDef="let element" data-label="DMS Call Log Number"> {{element.DMS_CALL_LOG_NO}} </mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="calllogtype">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header> Job Card No</mat-header-cell>
+                        <mat-cell *matCellDef="let element" data-label="Job Card No"> {{element.JOB_CARD_NO}} </mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="frameno">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header> Frame number</mat-header-cell>
+                        <mat-cell *matCellDef="let element" data-label="Frame number"> {{element.FRAME_NUMBER}} </mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="dmskm">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header>Entered KM </mat-header-cell>
+                        <mat-cell *matCellDef="let element" data-label="Entered KM"> {{element.DMS_KM}} </mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="actkm">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header>Actual KM </mat-header-cell>
+                        <mat-cell *matCellDef="let element" data-label="Actual KM"> {{element.KM_to_be_CHANGED}} </mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="deaRmks">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header >Dealer Remarks</mat-header-cell>
+                        <mat-cell *matCellDef="let element" data-label="Dealer Remarks"> {{element.REMARKS}} </mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="TM_EMPNO">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header >TM </mat-header-cell>
+                        <mat-cell *matCellDef="let element" data-label="TM"> {{element.TM_EMPNO}} </mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="TM_REMARKS" >
+                        <mat-header-cell *matHeaderCellDef mat-sort-header>TM Remarks </mat-header-cell>
+                        <mat-cell *matCellDef="let element" data-label="TM Remarks"> {{element.TM_REMARKS}} </mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="TM_APPR_DATE" >
+                        <mat-header-cell *matHeaderCellDef mat-sort-header>TM Approval Date </mat-header-cell>
+                        <mat-cell *matCellDef="let element" data-label="TM Approval Date"> {{(element.TM_APPR_DATE!=='0001-01-01T00:00:00')?(element.TM_APPR_DATE | date:'dd-MM-yyyy'):''}} </mat-cell>
+                    </ng-container>
+                   
+                    <ng-container matColumnDef="apprmks">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header>Remarks </mat-header-cell>
+                        <mat-cell *matCellDef="let element" data-label="Remarks">  <textarea 
+                             name="reasonforrejection" class="form-control form-control-sm 
+                             mb-2 mr-sm-2" cols="30"
+                              rows="2" maxlength="30" style="margin:10px" [(ngModel)]="element.Remarks">
+
+                        </textarea> </mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="approver">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header>Forward To </mat-header-cell>
+                        <mat-cell *matCellDef="let element" data-label="Forward To "> <select  style="margin:10px"
+                             class="form-control form-control-sm mb-2 mr-sm-2"
+                              name="tmdrpdwn"  [(ngModel)]="element.EMPNO">
+                            
+                            <option *ngFor="let tm of TMList" [value]="tm.empno">{{ tm.empname }}</option>
+                          </select> </mat-cell>
+                    </ng-container>
+                    
+                    <ng-container matColumnDef="approve">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header>Approve </mat-header-cell>
+                        <mat-cell *matCellDef="let element" data-label="Approve"> 
+                             <button mat-button (click)="approve(element)" 
+                             class="btn btn-success" style="font-size: 11px !important;">Approve
+                        </button> </mat-cell>
+                    </ng-container>
+                   
+                    <ng-container matColumnDef="reject">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header>Reject </mat-header-cell>
+                        <mat-cell *matCellDef="let element"  data-label="Reject"> 
+                             <button mat-button (click)="reject(element)"class="btn btn-danger" style="font-size: 11px !important;">Reject
+                        </button> </mat-cell>
+                    </ng-container>
+                    
+                   
+                    
+                  
+                   
+                    
+                   
+                    <!-- Star Column -->
+                   
+                    <mat-header-row *matHeaderRowDef="displayedKMColumn;sticky: true"></mat-header-row>
+                    <!-- <tr mat-footer-row *matFooterRowDef="displayedColumns; sticky: true"></tr> -->
+                    <mat-row *matRowDef="let row; columns: displayedKMColumn;"></mat-row>
+                </mat-table>
+                <mat-paginator [pageSizeOptions]="[5,10, 20, 30]" [pageSize]="pageSize" [pageIndex]="currentPage"
+                    showFirstLastButtons (page)="handlePage($event)" [length]="totalSize"></mat-paginator>
+            </div>
+            <!-- <div [ngClass]="dataSource.filteredData.length<0" class="no-record">
+                <tr>No results found.</tr></div> -->
+    </div>
+    </div>
+</div>
+  </div>

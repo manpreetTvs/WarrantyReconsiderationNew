@@ -1,0 +1,77 @@
+.navBg {
+    background-color: #143E67;
+    font-family: Tahoma,Arial,Verdana;
+}
+
+nav a h5{
+    font-family: Calibri, Century Gothic , Trebuchet MS;
+    font-size: 14pt;
+    color: #FFFFFF;
+    font-weight: 700;
+    font-style: italic;
+}
+
+.custMenu {
+    background-color: #EA5607;
+    font-family: Tahoma,Arial,Verdana;
+    color: White;
+    font-weight: bold;
+    font-size: 11px;
+    height: 18px;
+}
+
+.custNavMenu {
+    margin-top: -16px;
+    background-image: linear-gradient(to top, #d6d5d4, #fff);
+    /* background-color: #d6d5d4; */
+    border-style: solid;
+    border-color: #e3e2e2 #e3e2e2 #fff;
+    font-family: Tahoma,Arial,Verdana;
+    font-size: 12px;
+    color: #555;
+}
+
+.btn-link {
+    font-weight: 400;
+    color: #337ab7;
+    border-radius: 0;
+    font-family: Tahoma,Arial,Verdana;
+    font-size: 12px;
+    text-align: center;
+}
+
+.sign-in-btn {
+    color: #fff;
+    background-color: #337ab7;
+    border-color: #2e6da4;
+    font-family: Tahoma,Arial,Verdana;
+    font-size: 12px;
+}
+
+.log-in-sec {
+    border-style: solid;
+    border: 1px solid #25a0da;
+    padding-bottom: 50px;
+}
+
+.card {
+    border-color: #fff;
+}
+
+.cust-head {
+    border-bottom: 3px solid #25a0da;
+    padding: 4px;
+    color: #fff;
+}
+
+.log-in-head {
+    background-color: #25a0da;
+    padding: 10px;
+    font-family: Tahoma,Arial,Verdana;
+    font-size: 12px;
+    margin-left: -19px;
+}
+
+.sign-in-div {
+    padding: 10px;
+}

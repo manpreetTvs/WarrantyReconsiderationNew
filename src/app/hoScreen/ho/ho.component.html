@@ -1,0 +1,74 @@
+<nav class="navbar navbar-light justify-content-between navBg">
+    <a class="navbar-brand"><h5 class="custH5">Reconsideration of Rejected Warranty</h5></a>
+    <img class="mr-sm-2" src="..\assets\images\corp-tvs-logo.png" alt="Logo" width="20%">
+</nav>
+
+<div>
+    <p class="custMenu">Welcome T Jagadeesan-Territory Manager-2W</p>
+    <ul class="nav navbar-light bg-light custNavMenu" role="tablist">
+        <li class="nav-item">
+            <a class="nav-link active" data-toggle="pill" href="#home">Home</a>
+        </li>
+        <!-- <li class="nav-item">
+            <a class="nav-link" data-toggle="pill" href="#pending">Pending Approval</a>
+        </li> -->
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle dropbtn">Approve</a>
+            <div class="dropdown-content">
+                <a data-toggle="pill" href="#pending">Approval Parts</a>
+            </div>
+            <!-- <a class="nav-link" data-toggle="pill" href="#pending">Pending Approval</a> -->
+        </li>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle dropbtn">Report</a>
+            <div class="dropdown-content">
+                <a data-toggle="pill" href="#menu1">Under Process Pending Parts</a>
+                <a data-toggle="pill" href="#completed">Approval Completed</a>
+            </div>
+        </li>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle dropbtn">Super Approval</a>
+            <div class="dropdown-content">
+                <a data-toggle="pill" href="#superPending">Pending Super Approval</a>
+                <!-- <a data-toggle="pill" href="#superQuery">Query Pending</a> -->
+                <a data-toggle="pill" href="#superReport">Report</a>
+            </div>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="pill" href="#menu2">Logout</a>
+        </li>
+    </ul>
+</div>
+
+<div class="tab-content">
+    <div id="home" class="tab-pane active">
+        <div>
+            <h4 class="custHomeHead">Downloads</h4>
+        </div>
+        <ul>
+            <li>Warranty wear and tear limitations</li>
+            <li>Model wise Warranty period</li>
+            <li>Special Approval - Parts list format</li>
+            <li>Special Approval - Request letter from Dealer to TM/ASM</li>
+            <li>Special Approval - Request letter from ASM to VP Service</li>
+        </ul>
+    </div>
+    <div id="pending" class="tab-pane fade">
+        <app-ho-pending-parts></app-ho-pending-parts>
+    </div>
+    <div id="menu1" class="tab-pane fade">
+        <app-approver-report></app-approver-report>
+    </div>
+    <div id="completed" class="tab-pane fade">
+        <app-completed-report></app-completed-report>
+    </div>
+    <div id="superPending" class="tab-pane fade">
+        <app-super-pending-approval></app-super-pending-approval>
+    </div>
+    <!-- <div id="superQuery" class="tab-pane fade">
+        <app-super-pending-query></app-super-pending-query>
+    </div> -->
+    <div id="superReport" class="tab-pane fade">
+        <app-super-report></app-super-report>
+    </div>
+</div>

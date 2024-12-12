@@ -1,0 +1,409 @@
+<div class="custApprovalBody"  >
+    <h4 class="custApprovalHead">Rejected Part Approval</h4>
+
+    <form class="form-inline form-bg">
+      <div class="form-row">
+          <div class="form-group">
+            <label for="datefrom" class="form-control-sm mb-2 mr-sm-2">Date From :</label>
+            <input [(ngModel)]="fromdate" type="date"
+             class="form-control form-control-sm mb-2 mr-sm-2 app-sec" name="datefrom" placeholder="Date From">
+          </div>
+          <div class="form-group">
+              <label for="dateto" class="form-control-sm mb-2 mr-sm-2">Date To :</label>
+              <input [(ngModel)]="todate" type="date" 
+              class="form-control form-control-sm mb-2 mr-sm-2 app-sec" name="dateto" placeholder="Date To">
+          </div>
+          <!-- <div class="form-group">
+            <label for="dealercode" class="form-control-sm mb-2 mr-sm-2">Dealer Code:</label>
+            <input [(ngModel)]="searchdealercode" 
+            type="text" class="form-control form-control-sm mb-2 mr-sm-2 app-sec" name="searchdealercode" placeholder="Dealer Code">
+          </div> -->
+          <!-- <div class="form-group">
+              <label for="stage" class="form-control-sm mb-2 mr-sm-2">Status :</label>
+              <select  class="form-control form-control-sm mb-2 mr-sm-2" name="tmdrpdwn" 
+              [(ngModel)]="stage">
+                  <option  value="">Select Status</option>
+                  <option  value="Pending">Pending</option>
+                  <option  value="Completed">Completed</option>
+                 
+                </select>
+          </div> -->
+          <!-- <div class="form-group">
+              <label for="dealercode" class="form-control-sm mb-2 mr-sm-2 approve-sec">Dealer Code:</label>
+              <select [(ngModel)]="searchdealercode" class="form-control form-control-sm mb-2 mr-sm-2" name="dealercode" id="">
+                <option value="">-- Select --</option>
+                <option value=""></option>
+                <option value=""></option>
+              </select>
+          </div>
+          <div class="form-group">
+              <label for="searchorderno" class="form-control-sm mb-2 mr-sm-2 approve-sec">Order No:</label>
+              <select class="form-control form-control-sm mb-2 mr-sm-2" name="orderno" id="">
+                <option value="">-- Select --</option>
+                <option value=""></option>
+                <option value=""></option>
+              </select>
+          </div> -->
+          <div class="form-group">
+            <input type="submit" (click)="serach()" value="Search" class="btn btn-success mb-2 form-control-sm" id="subbtn">
+          </div>
+        </div>
+  </form>
+  
+    <div class="tableHeight">
+      <table class="table table-bordered table-sm custTable">
+        <thead>
+          <tr>
+            <th>Select</th>
+            <!-- <th>State</th>
+            <th>Area</th>
+            <th>District</th> -->
+            <th>City</th>
+            <th>Created On</th>
+            <th>Order No</th>
+            <th>Claim Settled Date</th>
+            <th>No. of days left for Reclaiming</th>
+            <th>Material No</th>
+            <th>Material Description</th>
+            <th>Frame No</th>
+            <th>Pending With</th>
+            <th>Status</th>
+            <th>Pending From</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of pendingList">
+            <td><a role="button" class="selectItem" (click)="getRequestByDetails(item)">Select</a></td>
+            <!-- <td>xxx</td>
+            <td>john@example.com</td>
+            <td>John</td> -->
+            <td>{{item.CITY}}</td>
+            <td>{{item.CREATED_ON | date:'dd-MM-yyyy'}}</td>
+            <td>{{item.ORDER_NUMBER}}</td>
+            <td>{{item.CLAIM_SETTLED_DATE | date:'dd-MM-yyyy'}}</td>
+            <td>{{item.DAYS_LEFT_FOR_RECLAIMING}}</td>
+            <td>{{item.PART_NUMBER}}</td>
+            <td>{{item.PART_DESCRIPTION}}</td>
+            <td>{{item.FRAME_NUMBER}}</td>
+            <td>{{ role }}</td>
+            <td>Pending for Approval</td>
+            <td>{{item.CREATED_ON | date:'dd-MM-yyyy'}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <br>
+    <div *ngIf="displayDetailSec">
+      <div>
+          <h4 class="custHomeHead">Documents</h4>
+      </div>
+      <table class="table custDocTable">
+        <!-- <tr *ngFor="let file of fileList"> -->
+          
+          <!-- <td class="app-rem">Application, AO recommendation</td> -->
+          <tr>
+            <!-- <td class="app-rem">Application, AO recommendation</td> -->
+            <td>Dealer</td>
+            <td>{{ OrderDetails.CREATED_ON | date:'dd-MM-yyyy'}}</td>
+            <td>
+              <!-- <a href="https://www.advantagetvs.com/ReconsiderationAPI/Creation/fileDownload?fileName={{ item.FILENAME}}">{{ (OrderDetails.FILENAME!=null&&OrderDetails.FILENAME!)? (OrderDetails.FILENAME):''}}</a> -->
+              <!-- <a href="http://localhost:51539/Creation/fileDownload?fileName={{ item.FILENAME }}">{{ item.FILE_NAME }}</a> -->
+            </td>
+          </tr>
+          <!-- <td>
+            <div class="custom-file">
+              <input type="file" class="custom-file-input" id="customFile">
+              <label class="custom-file-label" for="customFile">Choose file</label>
+            </div>
+          </td> -->
+          <!-- <td><input type="button" value="Update"></td> -->
+        <!-- </tr> -->
+      </table>
+      <div>
+        <h4 class="custHomeHead">Application Details</h4>
+      </div>
+      <div>
+        <p></p>
+        <div class="jumbotron jumbo2">
+          <form>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="claimsettleddate" class="form-control-sm mb-2 mr-sm-2">Claim Settled Date</label>
+                <input disabled value="{{OrderDetails.CLAIM_SETTLED_DATE|date:'dd-MM-yyyy'}}"  type="text" class="form-control form-control-sm mb-2 mr-sm-2 app-sec" name="claimsettleddate" placeholder="Claim Settled Date">
+              </div>
+              <div class="form-group">
+                <label for="daysleft" class="form-control-sm mb-2 mr-sm-2">Days left for Reclaiming</label>
+                <input disabled [(ngModel)]="OrderDetails.DAYS_LEFT_FOR_RECLAIMING" type="text" class="form-control form-control-sm mb-2 mr-sm-2 app-sec" name="daysleft" placeholder="Days left for Reasoning">
+              </div>
+              <div class="form-group">
+                <label for="partno" class="form-control-sm mb-2 mr-sm-2">Part Number</label>
+                <input disabled [(ngModel)]="OrderDetails.PART_NUMBER" type="text" class="form-control form-control-sm mb-2 mr-sm-2 app-sec" name="partno" placeholder="Part Number">
+              </div>
+              <div class="form-group">
+                <label for="partdesc" class="form-control-sm mb-2 mr-sm-2">Part Description</label>
+                <input disabled [(ngModel)]="OrderDetails.PART_DESCRIPTION" type="text" class="form-control form-control-sm mb-2 mr-sm-2 app-sec" name="partdesc" placeholder="Part Description">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="frameno" class="form-control-sm mb-2 mr-sm-2">Frame Number</label>
+                <input disabled [(ngModel)]="OrderDetails.FRAME_NUMBER" type="text" class="form-control form-control-sm mb-2 mr-sm-2 app-sec" name="frameno" placeholder="Frame Number">
+              </div>
+              <div class="form-group">
+                <label for="kms" class="form-control-sm mb-2 mr-sm-2">Kms</label>
+                <input disabled [(ngModel)]="OrderDetails.KMS" type="text" class="form-control form-control-sm mb-2 mr-sm-2 app-sec" name="kms" placeholder="Kms">
+              </div>
+              <div class="form-group">
+                <label for="salesdate" class="form-control-sm mb-2 mr-sm-2">Sales Date</label>
+                <input disabled value="{{OrderDetails.SALES_DATE|date:'dd-MM-yyyy'}}" type="text" class="form-control form-control-sm mb-2 mr-sm-2 app-sec" name="salesdate" placeholder="Sales Date">
+              </div>
+              <div class="form-group">
+                <label for="repairdate" class="form-control-sm mb-2 mr-sm-2">Repair Date</label>
+                <input disabled  value="{{OrderDetails.REPAIR_DATE|date:'dd-MM-yyyy'}}" type="text" class="form-control form-control-sm mb-2 mr-sm-2 app-sec" name="repairdate" placeholder="Repair date">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="model" class="form-control-sm mb-2 mr-sm-2">Model</label>
+                <input disabled [(ngModel)]="OrderDetails.MODEL" type="text" class="form-control form-control-sm mb-2 mr-sm-2 app-sec" name="model" placeholder="Model">
+              </div>
+              <div class="form-group">
+                <label for="ndprate" class="form-control-sm mb-2 mr-sm-2">NDP Rate</label>
+                <input disabled [(ngModel)]="OrderDetails.NDP_RATE" type="text" class="form-control form-control-sm mb-2 mr-sm-2 app-sec" name="ndprate" placeholder="NDP Rate">
+              </div>
+              <div class="form-group">
+                <label for="dealercode" class="form-control-sm mb-2 mr-sm-2">Dealer Code</label>
+                <input disabled [(ngModel)]="OrderDetails.DEALER_CODE" type="text" class="form-control form-control-sm mb-2 mr-sm-2 app-sec" name="dealercode" placeholder="Dealer Code">
+              </div>
+              <div class="form-group">
+                <label for="dealername" class="form-control-sm mb-2 mr-sm-2">Dealer Name</label>
+                <input disabled [(ngModel)]="OrderDetails.DEALER_NAME" type="text" class="form-control form-control-sm mb-2 mr-sm-2 app-sec" name="dealername" placeholder="Dealer Name">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="reasonforrejection" class="form-control-sm mb-2 mr-sm-2">Reason for Rejection</label>
+                <textarea disabled [(ngModel)]="OrderDetails.REJECTION_REASON" name="reasonforrejection" class="form-control form-control-sm mb-2 mr-sm-2 app-sec" cols="30" rows="3"></textarea>
+              </div>
+              <div class="form-group">
+                <label for="justification" class="form-control-sm mb-2 mr-sm-2">Justification</label>
+                <textarea disabled [(ngModel)]="OrderDetails.JUSTIFICATION" name="justification" class="form-control form-control-sm mb-2 mr-sm-2 app-sec" cols="30" rows="3"></textarea>
+              </div>
+              <div class="form-group">
+                <label for="city" class="form-control-sm mb-2 mr-sm-2">City</label>
+                <input disabled [(ngModel)]="OrderDetails.CITY" type="text" class="form-control form-control-sm mb-2 mr-sm-2 app-sec" name="city" placeholder="City">
+              </div>
+              <!-- <div class="form-group">
+                <label for="uploaddocs" class="form-control-sm mb-2 mr-sm-2">Upload Documents</label>
+                <input disabled type="file" class="form-control-file form-control-sm  app-sec" name="uploaddocs">
+              </div> -->
+            </div>
+          </form>
+        </div>
+      </div>
+      <div>
+        <h4 class="custHomeHead">Approve</h4>
+      </div>
+      <!-- <form>
+        <div class="form-row">
+          <div class="form-group col-md-3">
+            <label for="seldoc" class="form-control-sm mb-2 mr-sm-2 approve-sec">Select document Type:</label>
+            <select class="form-control form-control-sm mb-2 mr-sm-2" name="seldoc" id="">
+              <option value="">-- Select --</option>
+              <option value=""></option>
+              <option value=""></option>
+            </select>
+          </div>
+          <div class="form-group col-md-3">
+            <label for="updocs" class="form-control-sm mb-2 mr-sm-2 approve-sec">Upload additional documents here:</label>
+            <div class="custom-file">
+              <input type="file" class="custom-file-input" id="customFile">
+              <label class="custom-file-label" for="customFile">Choose file</label>
+            </div>
+          </div>
+        </div>
+      </form> -->
+      <div class="row form-row">
+        <div class="form-group col-md-3">
+          <label for="remarks" class="form-control-sm mb-2 mr-sm-2 approve-sec">Remarks</label>
+          <textarea [(ngModel)]="approval.REMARKS" name="remarks" class="form-control form-control-sm mb-2 mr-sm-2" cols="30" rows="3"></textarea>
+        </div>&nbsp;&nbsp;&nbsp;
+        <!-- <div class="form-check form-group col-md-3">
+          <br><br>
+          <input type="checkbox" class="form-check-input" id="splhigh">
+          <label class="form-check-label approve-sec" for="splhigh">Special Hightlight</label>
+        </div> -->
+        <div *ngIf="isforward" class="form-group col-md-3">
+          <label for="queryto" class="form-control-sm mb-2 mr-sm-2 approve-sec">Forward To :</label>
+          <select [(ngModel)]="approval.EMPNO" (change)="selectAm($event)" class="form-control form-control-sm mb-2 mr-sm-2" name="queryto" id="">
+            <option value="">Select</option>
+            <option *ngFor="let am of amList" [value]="am.empno">{{ am.empname }}</option>
+          </select>
+        </div>
+        <div class="form-group query-btn">
+          <input type="submit" value="Approve" class="btn btn-outline-secondary mb-2 form-control-sm"
+           (click)="approve()" id="subbtn">
+        </div>
+      </div>
+      <div>
+        <h4 class="custHomeHead">Query</h4>
+      </div>
+      <form>
+        <div class="row form-row">
+          <div class="form-group col-md-3">
+            <label for="query" class="form-control-sm mb-2 mr-sm-2 approve-sec">Query</label>
+            <textarea [(ngModel)]="Query.REMARKS" name="query" class="form-control form-control-sm mb-2 mr-sm-2" cols="30" rows="3"></textarea>
+          </div>&nbsp;&nbsp;&nbsp;
+          <!-- <div class="form-check form-group col-md-3">
+            <br><br>
+            <input type="checkbox" class="form-check-input" id="splhigh">
+            <label class="form-check-label approve-sec" for="splhigh">Special Hightlight</label>
+          </div> -->
+          <div  class="form-group col-md-3">
+            <label for="queryto" class="form-control-sm mb-2 mr-sm-2 approve-sec">Query To :</label>
+            <select [(ngModel)]="Query.TO_EMPNO" (change)="selectedQueryTo($event)" class="form-control form-control-sm mb-2 mr-sm-2" name="queryto" id="">
+              <option *ngFor="let queryTo of queryList" [value]="queryTo.EMPNO">{{ queryTo.EMPNAME }}</option>
+            </select>
+          </div>
+          <!-- <div *ngIf="role === 'AM'" class="form-group col-md-3">
+            <label for="queryto" class="form-control-sm mb-2 mr-sm-2 approve-sec">Query To :</label>
+            <select [(ngModel)]="querySelected" (change)="selectedQueryTo($event)" class="form-control form-control-sm mb-2 mr-sm-2" name="queryto" id="">
+              <option *ngFor="let queryTo of amQueryToList" [value]="queryTo.no">{{ queryTo.name }}</option>
+            </select>
+          </div> -->
+          <div class="form-group query-btn">
+            <input type="submit" (click)="saveQuery()" value="Send Query" class="btn btn-outline-secondary mb-2 form-control-sm" id="subbtn">
+          </div>
+        </div>
+        <!-- <div class="row form-row">
+          <div class="form-group col-md-3">
+            <label for="reject" class="form-control-sm mb-2 mr-sm-2 approve-sec">Reason for Rejection</label>
+            <textarea name="reject" class="form-control form-control-sm mb-2 mr-sm-2" cols="30" rows="3"></textarea>
+          </div>&nbsp;&nbsp;&nbsp;
+          <div class="form-check form-group col-md-3">
+            <br><br>
+            <input type="checkbox" class="form-check-input" id="splhigh">
+            <label class="form-check-label approve-sec" for="splhigh">Special Hightlight</label>
+          </div>
+          <div class="form-group col-md-3">
+            <label for="queryto" class="form-control-sm mb-2 mr-sm-2 approve-sec">Rejection To :</label>
+            <select class="form-control form-control-sm mb-2 mr-sm-2" name="queryto" id="">
+              <option value="">-- Select --</option>
+              <option value=""></option>
+              <option value=""></option>
+            </select>
+          </div>
+          <div class="form-group query-btn">
+            <input type="submit" value="Send Rejection" class="btn btn-outline-secondary mb-2 form-control-sm" id="subbtn">
+          </div>
+        </div> -->
+      </form>
+      <div>
+        <h4 class="custHomeHead">Approval Details</h4>
+    </div>
+      <table class="esc-table">
+        <tbody>
+          <tr>
+            <td class="esc-data">
+              Requestor: &nbsp; {{ OrderDetails.DEALER_CODE }}
+            </td>
+            <td class="esc-data">
+              Request Created Date: &nbsp; {{  (OrderDetails.CREATED_ON!=='0001-01-01T00:00:00')?(OrderDetails.CREATED_ON | date:'dd-MM-yyyy'):''}}
+            </td>
+            <td class="esc-data">
+              Requestor Remarks: &nbsp; {{ OrderDetails.JUSTIFICATION }}
+            </td>
+          </tr>
+          <tr>
+            <td> </td>
+            <td> </td>
+            <td> </td>
+          </tr>
+          <tr>
+            <td class="esc-data">
+              TM: &nbsp; {{ OrderDetails.TM }}
+            </td>
+            <td class="esc-data">
+              TM Approved Date: &nbsp; {{ (OrderDetails.TM_APPR_DATE!=='0001-01-01T00:00:00')?(OrderDetails.TM_APPR_DATE | date:'dd-MM-yyyy'):''}}
+            </td>
+            <td class="esc-data">
+              TM Remarks: &nbsp; {{ OrderDetails.TM_REMARKS }}
+            </td>
+          </tr>
+          <tr>
+            <td> </td>
+            <td> </td>
+            <td> </td>
+          </tr>
+          <tr>
+            <td class="esc-data">
+              ASM: &nbsp; {{ OrderDetails.ASM }}
+            </td>
+            <td class="esc-data">
+              ASM Approved Date: &nbsp; {{ (OrderDetails.AM_APPR_DATE!=='0001-01-01T00:00:00')?(OrderDetails.AM_APPR_DATE| date:'dd-MM-yyyy'):'' }}
+            </td>
+            <td class="esc-data">
+              ASM Remarks: &nbsp; {{ OrderDetails.ASM_REMARKS }}
+            </td>
+          </tr>
+          <tr>
+            <td> </td>
+            <td> </td>
+            <td> </td>
+          </tr>
+        
+          <tr>
+            <td class="esc-data">
+              HO : &nbsp; {{ OrderDetails.HO }}
+            </td>
+            <td class="esc-data">
+              HO Approved Date: &nbsp; {{(OrderDetails.HO_APPR_DATE!=='0001-01-01T00:00:00')? (OrderDetails.HO_APPR_DATE | date:'dd-MM-yyyy'):''}}
+            </td>
+            <td class="esc-data">
+              HO Remarks: &nbsp; {{ OrderDetails.HO_REMARKS }}
+            </td>
+          </tr>
+        </tbody>
+        <br>
+      </table>
+      <div>
+        <h4 class="custHomeHead">Escalation Details</h4>
+      </div>
+      <table class="esc-table">
+        <tbody *ngFor="let esc of escalationList">
+          <tr>
+            <td class="esc-data">
+              From: &nbsp; {{ esc.FROM_EMPNAME }}
+            </td>
+            <td class="esc-data">
+              To: &nbsp; {{ esc.TO_EMPNAME }}
+            </td>
+            <td class="esc-data">
+              Date & Time: &nbsp;
+              {{ esc.CREATED_ON | date:'dd-MM-yyyy'}}
+            </td>
+          </tr>
+          <tr>
+            <td class="esc-data remarks-sec" colspan="6">
+              {{ esc.REMARKS }}
+            </td>
+          </tr>
+        </tbody>
+        <br>
+      </table>
+    </div>
+</div>
+
+<div class="overlay" *ngIf="popup">
+  <div class="popup">
+      <h2></h2>
+      <a class="close" (click)="popup = false">&times;</a>
+      <p class="msg-sec">Message from TVSM 2W Warranty Section</p>
+      <div class="content">
+        Your request is submitted successfully
+      </div>
+      <div class="text-center ok-btn">
+        <input class="btn btn-primary btn-sm" type="button" (click)="popup = false" value="OK">
+      </div>
+  </div>
+</div>

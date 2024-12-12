@@ -1,0 +1,64 @@
+<nav class="navbar navbar-light justify-content-between navBg">
+    <a class="navbar-brand"><h4 class="custApprovalHead" 
+        style="background-color:#143E67 !important">DMS Call Log Deviation Process </h4></a>
+    <img class="mr-sm-2" src="..\assets\images\corp-tvs-logo.png" alt="Logo" width="20%">
+</nav>
+
+
+
+
+<div>
+    <p class="custMenu">Welcome empname</p>
+    <ul class="nav navbar-light bg-light custNavMenu" role="tablist">
+        <li class="nav-item">
+            <a class="nav-link active"   data-toggle="pill" href="#home" >Home</a>
+        </li>
+        <!-- <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" href="#">Action</a>
+              <a class="dropdown-item" href="#">Another action</a>
+              <a class="dropdown-item" href="#">Something else here</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="#">Separated link</a>
+            </div>
+          </li> -->
+            <!-- <li class="nav-item">
+                <a class="nav-link" data-toggle="pill" href="#pending">Pending Approval</a>
+            </li> -->
+         
+
+        <li  class="nav-item dropdown"  >
+            <a class="nav-link dropdown-toggle dropbtn">Request Creation</a>
+            
+            <div class="dropdown-content">
+                <a data-toggle="pill" href="#pending">Sale Date Change</a>
+                <a data-toggle="pill" href="#pending1">KM Change</a> 
+            </div>
+
+            <!-- <a class="nav-link" data-toggle="pill" href="#pending">Pending Approval</a> -->
+        </li>
+        
+        <li  class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle dropbtn">Report</a>
+            <div class="dropdown-content">
+                <!-- <a data-toggle="pill" href="#menu1">Under Process Pending Parts</a> -->
+                <a data-toggle="pill" href="#completed">DMS Call Log Report</a>
+            </div>
+        </li>
+       
+    </ul>
+</div>
+<div class="tab-content">
+  
+    <div  id="pending" class="tab-pane fade" >
+        <app-dms-call-log-creation varName="1"></app-dms-call-log-creation>
+    </div>
+    <div  id="pending1" class="tab-pane fade" >
+        <app-dms-call-log-creation varName="2"></app-dms-call-log-creation>
+    </div>
+    <div  id="completed" class="tab-pane fade" >
+        <app-dms-dealer-report></app-dms-dealer-report>
+    </div>
+    
+</div>

@@ -1,0 +1,249 @@
+
+  <!-- <h4 class="custApprovalHead" style="background-color:#143E67 !important">DMS Call Log Deviation Process</h4>
+  <h4 class="redrow"></h4> -->
+  <div style="padding:20px">
+
+    <div class="divv">
+
+      <!-- <div class="flex align-middle" style="JUSTIFY-CONTENT: flex-end; margin-top: 10px;">
+            <button mat-button (click)="openFilter()">
+                <img src="assets/icons/filter.png" class="mr-30" alt="">
+            </button>
+
+        </div> 
+    -->
+    <h4 style="font-size: 20px;padding:20px;color:#143e67;font-weight:800">DMS Call Log Report</h4>
+    <div class="table">
+        <div class="mat-elevation-z8">
+            <mat-table [dataSource]="dataSource" matSort>
+
+                <!-- Position Column -->
+                <!-- <ng-container matColumnDef="sNo">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> S.No </mat-header-cell>
+                    <mat-cell *matCellDef="let element;let i = index"> {{i +1}} </mat-cell>
+                </ng-container> -->
+                <ng-container matColumnDef="dealer_id">
+                    <mat-header-cell  *matHeaderCellDef mat-sort-header> Dealer Id</mat-header-cell>
+                    <mat-cell  *matCellDef="let element"  data-label="Dealer Id"> {{element.DEALER_ID}} </mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="CalllogNo">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> Call Log Number </mat-header-cell>
+                    <mat-cell *matCellDef="let element"> {{element.CALL_LOG_ID}} </mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="calllogtype">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> Call Log Type</mat-header-cell>
+                    <mat-cell *matCellDef="let element"> {{element.CALL_LOG_TYPE_DESC}} </mat-cell>
+                </ng-container>
+               
+                <ng-container matColumnDef="noofcall">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>No Of Calls </mat-header-cell>
+                    <mat-cell *matCellDef="let element" > {{element.Count}} </mat-cell>
+                </ng-container>
+               
+                
+                <ng-container matColumnDef="star">
+                    <mat-header-cell  *matHeaderCellDef mat-sort-header>Click Here </mat-header-cell>
+                    <mat-cell  *matCellDef="let element" > 
+                         <button mat-button (click)="getRecord(element)" style="color: blue;border: 0px; padding: 10px;background: transparent;">Click here for details
+                    </button> </mat-cell>
+                </ng-container>
+                
+              
+               
+                
+               
+                <!-- Star Column -->
+               
+                <mat-header-row *matHeaderRowDef="displayedColumns;sticky: true"></mat-header-row>
+                <!-- <tr mat-footer-row *matFooterRowDef="displayedColumns; sticky: true"></tr> -->
+                <mat-row  *matRowDef="let row; columns: displayedColumns;"></mat-row>
+            </mat-table>
+            <mat-paginator [pageSizeOptions]="[5,10, 20, 30]" [pageSize]="pageSize" [pageIndex]="currentPage"
+                showFirstLastButtons (page)="handlePage($event)" [length]="totalSize"></mat-paginator>
+        </div>
+        <!-- <div [ngClass]="dataSource.filteredData.length<0" class="no-record">
+            <tr>No results found.</tr></div> -->
+    </div>
+
+    <div *ngIf="isSaleDate">
+        <h4 style="font-size: 16px;padding:20px;color:#143e67;font-weight:800">Sale date Change Report</h4>
+        <div class="table"  style="margin-top:10px ;padding:20px">
+            <div class="mat-elevation-z8">
+                <mat-table [dataSource]="dataSourceSale" matSort >
+    
+                    <!-- Position Column -->
+                    <ng-container matColumnDef="sNo">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header > S.No </mat-header-cell>
+                        <mat-cell *matCellDef="let element;let i = index"> {{i +1}} </mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="dmsCalllogNo">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header> DMS Call Log Number </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.DMS_CALL_LOG_NO}} </mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="calllogtype">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header> Job Card No</mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.JOB_CARD_NO}} </mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="frameno">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header> Frame number</mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.FRAME_NUMBER}} </mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="dmssaledate">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header>Entered Sale Date </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.DMS_SALE_DATE | date :'dd-MM-yyyy'}} </mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="actsaledate">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header>Actual Sale Date </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.SALE_DATE_TO_BE_CHANGED| date :'dd-MM-yyyy'}} </mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="remarks">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header>Remarks </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.REMARKS}} </mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="status">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header> Status</mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.Status}} </mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="pendingwith">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header>Pending With </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.Pending_With}} </mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="pendingfrom">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header>Pending From </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.Pending_From| date :'dd-MM-yyyy'}} </mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="TM_EMPNO">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header>TM </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.TM_EMPNO}} </mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="TM_REMARKS">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header>TM Remarks </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.TM_REMARKS}} </mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="TM_APPR_DATE">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header>TM Approval Date </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{(element.TM_APPR_DATE!=='0001-01-01T00:00:00')?(element.TM_APPR_DATE | date:'dd-MM-yyyy'):''}} </mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="ASM_EMPNO">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header>ASM </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.ASM_EMPNO}} </mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="ASM_REMARKS">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header>ASM Remarks </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.ASM_REMARKS}} </mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="ASM_APPR_DATE">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header>ASM Approval Date </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{(element.ASM_APPR_DATE!=='0001-01-01T00:00:00')?(element.ASM_APPR_DATE | date:'dd-MM-yyyy'):''}} </mat-cell>
+                    </ng-container>
+                    
+                   
+                   
+                    
+                   
+                    <!-- Star Column -->
+                   
+                    <mat-header-row *matHeaderRowDef="displayedSaleColumn;sticky: true"></mat-header-row>
+                    <!-- <tr mat-footer-row *matFooterRowDef="displayedColumns; sticky: true"></tr> -->
+                    <mat-row *matRowDef="let row; columns: displayedSaleColumn;"></mat-row>
+                </mat-table>
+                <mat-paginator [pageSizeOptions]="[5,10, 20, 30]" [pageSize]="pageSize" [pageIndex]="currentPage"
+                    showFirstLastButtons (page)="handlePage($event)" [length]="totalSize"></mat-paginator>
+            </div>
+            <!-- <div [ngClass]="dataSource.filteredData.length<0" class="no-record">
+                <tr>No results found.</tr></div> -->
+        </div>
+    </div>
+    <div *ngIf="isKM">
+        <h4 style="font-size: 16px;padding:20px;color:#143e67;font-weight:800">KM Change Report</h4>
+     <div class="table"  style="margin-top:10px;padding:20px">
+            <div class="mat-elevation-z8">
+                <mat-table [dataSource]="dataSourceKM" matSort>
+    
+                    <!-- Position Column -->
+                    <ng-container matColumnDef="sNo">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header> S.No </mat-header-cell>
+                        <mat-cell *matCellDef="let element;let i = index"> {{i +1}} </mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="dmsCalllogNo">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header> DMS Call Log Number </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.DMS_CALL_LOG_NO}} </mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="calllogtype">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header> Job Card No</mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.JOB_CARD_NO}} </mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="frameno">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header> Frame number</mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.FRAME_NUMBER}} </mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="dmskm">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header>Entered KM </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.DMS_KM}} </mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="actkm">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header>Actual KM </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.KM_to_be_CHANGED}} </mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="remarks">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header>Remarks </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.REMARKS}} </mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="status">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header> Status</mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.Status}} </mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="pendingwith">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header>Pending With </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.Pending_With}} </mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="pendingfrom">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header>Pending From </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.Pending_From| date :'dd-MM-yyyy'}} </mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="TM_EMPNO">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header>TM </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.TM_EMPNO}} </mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="TM_REMARKS">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header>TM Remarks </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.TM_REMARKS}} </mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="TM_APPR_DATE">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header>TM Approval Date </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{(element.TM_APPR_DATE!=='0001-01-01T00:00:00')?(element.TM_APPR_DATE | date:'dd-MM-yyyy'):''}} </mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="ASM_EMPNO">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header>ASM </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.ASM_EMPNO}} </mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="ASM_REMARKS">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header>ASM Remarks </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.ASM_REMARKS}} </mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="ASM_APPR_DATE">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header>ASM Approval Date </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{(element.ASM_APPR_DATE!=='0001-01-01T00:00:00')?(element.ASM_APPR_DATE | date:'dd-MM-yyyy'):''}} </mat-cell>
+                    </ng-container>
+                    
+                   
+                    
+                  
+                   
+                    
+                   
+                    <!-- Star Column -->
+                   
+                    <mat-header-row *matHeaderRowDef="displayedKMColumn;sticky: true"></mat-header-row>
+                    <!-- <tr mat-footer-row *matFooterRowDef="displayedColumns; sticky: true"></tr> -->
+                    <mat-row *matRowDef="let row; columns: displayedKMColumn;"></mat-row>
+                </mat-table>
+                <mat-paginator [pageSizeOptions]="[5,10, 20, 30]" [pageSize]="pageSize" [pageIndex]="currentPage"
+                    showFirstLastButtons (page)="handlePage($event)" [length]="totalSize"></mat-paginator>
+            </div>
+            <!-- <div [ngClass]="dataSource.filteredData.length<0" class="no-record">
+                <tr>No results found.</tr></div> -->
+    </div>
+    </div>
+</div>
+  </div>

@@ -1,0 +1,203 @@
+@mixin defaultFont() {
+    // opacity: 0.72;
+    font-family: var(--fontName);
+    font-size: 11px;
+    font-weight: 700;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.ngx-datatable .datatable-body {
+    height: 100% !important;
+
+    .bar {
+        background-color: #00599d;
+    }
+}
+
+.ngx-datatable.material {
+    background: transparent;
+    box-shadow: none !important;
+
+    datatable-body-row {
+        border-radius: 4px;
+        border-top: 1px solid #dbdbdb !important;
+        border-bottom: 1px solid #dbdbdb !important;
+        background-color: #ffffff;
+        margin: 3px 0px;
+        margin-bottom: 7px !important;
+    }
+
+    // @-webkit-keyframes fadeInLeft {
+    //     from {
+    //       opacity: 0;
+    //       -webkit-transform: translate3d(-100%, 0, 0);
+    //       transform: translate3d(-100%, 0, 0);
+    //     }
+      
+    //     to {
+    //       opacity: 1;
+    //       -webkit-transform: translate3d(0, 0, 0);
+    //       transform: translate3d(0, 0, 0);
+    //     }
+    //   }
+      
+    //   @keyframes fadeInLeft {
+    //     from {
+    //       opacity: 0;
+    //       -webkit-transform: translate3d(-100%, 0, 0);
+    //       transform: translate3d(-100%, 0, 0);
+    //     }
+      
+    //     to {
+    //       opacity: 1;
+    //       -webkit-transform: translate3d(0, 0, 0);
+    //       transform: translate3d(0, 0, 0);
+    //     }
+    //   }
+    .datatable-row-right {
+        margin-left: 5px;
+
+        .datatable-body-cell {
+            display: flex;
+            justify-content: center;
+        }
+    }
+
+    // datatable-body-row {
+    //     .active,
+    //     .active:hover {
+    //         background-color: #d1ebff !important;
+    //     }
+    // }
+    .datatable-header .datatable-row-right {
+        background: transparent !important;
+        // transform: none !important;
+    }
+
+    datatable-body-row:first-child {
+        border-top: none !important;
+        margin: 0px;
+    }
+
+    .datatable-header-cell-label,
+    .datatable-body-cell-label {
+        @include defaultFont();
+    }
+    .datatable-row-right{
+        background-image: none !important;
+    }
+    .datatable-header-cell.resizeable{
+        background: transparent !important;
+    }
+    .datatable-body-cell-label {
+        font-size: 12px !important;
+    }
+
+    .datatable-body-cell-label {
+        opacity: 0.8;
+        cursor: default !important;
+    }
+
+    datatable-header {
+        border-bottom: 1px solid rgba(0, 0, 0, 0.12) !important;
+        margin-bottom: 8px;
+    }
+
+    .datatable-header-cell-label {
+        color: #00599d;
+        text-transform: uppercase;
+        cursor: pointer;
+    }
+
+    datatable-body-cell {
+        padding: 15px 1.2rem !important;
+        display: flex;
+        align-items: center;
+    }
+
+    datatable-footer {
+        border-bottom-left-radius: 5px;
+        border-bottom-right-radius: 5px;
+        background-color: white;
+
+        .page-count,
+        .pager li>a {
+            border: none !important;
+            color: var(--text-color) !important;
+            font-weight: bold !important;
+        }
+    }
+
+    .more-icon {
+        button {
+            border: none;
+            background: white;
+            cursor: pointer;
+        }
+    }
+}
+
+.single-selection .datatable-body-row.active,
+.single-selection .datatable-body-row.active .datatable-row-group {
+    background-color: #d1ebff !important;
+}
+
+.empty-row {
+    border-radius: 4px;
+    background-color: #ffffff;
+    height: 43px !important;
+    display: flex;
+    align-items: center;
+    justify-content: center
+}
+
+@media (min-width: 300px) and (max-width: 768px) {
+    datatable-header {
+        height: 60px !important;
+    }
+
+    // datatable-header-cell {
+    //     padding-top: 8px !important;
+    //     max-height: 35px;
+    // }
+}
+
+@media (min-width: 768px) and (max-width: 1500px) {
+
+    // datatable-header {
+    //     height: 48px !important;
+    // }
+    datatable-header-cell {
+        padding-top: 15px !important;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .desktop-hidden {
+        display: initial;
+    }
+
+    .mobile-hidden {
+        display: none;
+    }
+}
+
+@media screen and (min-width: 800px) {
+    .desktop-hidden {
+        display: none;
+    }
+
+    .mobile-hidden {
+        display: initial;
+    }
+}
+
+.mat-menu-item {
+    @include defaultFont();
+    margin: 0;
+    font-size: 14px;
+    line-height: 30px !important;
+    height: 30px !important;
+}

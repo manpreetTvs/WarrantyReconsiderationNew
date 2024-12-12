@@ -1,0 +1,35 @@
+<nav class="navbar navbar-light justify-content-between navBg">
+    <a class="navbar-brand"><h5 class="custH5">Reconsideration of Rejected Warranty</h5></a>
+    <img class="mr-sm-2" src="..\assets\images\corp-tvs-logo.png" alt="Logo" width="20%">
+</nav>
+<div class="custMenu"></div>
+<br><br>
+<div class="container d-flex justify-content-center">
+    <div class="log-in-sec col-6">
+        <div class="cust-head">
+            <span class="log-in-head">Log in</span>
+        </div>
+        <div class="row h-100 justify-content-center align-items-center">
+            <div class="card col-8">
+                <div class="card-body">
+                    <form>
+                        <div class="form-group">
+                          <!-- <label for="username">UserName</label> -->
+                          <input [(ngModel)]="empno" type="text" class="form-control" name="username" id="username" placeholder="Employee No">
+                        </div>
+                        <div class="form-group">
+                          <!-- <label for="password">Password</label> -->
+                          <input [(ngModel)]="emp_pwd" type="password" class="form-control" name="password" id="password" placeholder="Password">
+                        </div>
+                        <div>
+                            <span class="btn-link d-flex justify-content-center">Use Attendance Self Service User ID & Password</span>
+                        </div>
+                        <div class="form-group sign-in-div d-flex justify-content-center">
+                            <input type="button" class="form-control col-4 sign-in-btn" value="Sign in" (click)="signIn()">
+                        </div>
+                    </form> 
+                </div>
+            </div> 
+        </div>
+    </div>
+</div>

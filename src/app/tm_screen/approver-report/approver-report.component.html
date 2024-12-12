@@ -1,0 +1,585 @@
+<h4 class="custApprovalHead">Pending Parts</h4>
+<form class="form-inline form-bg">
+  <div class="form-row">
+      <div class="form-group">
+        <label for="datefrom" class="form-control-sm mb-2 mr-sm-2">Date From :</label>
+        <input [(ngModel)]="fromddate" type="date" class="form-control form-control-sm mb-2 mr-sm-2 app-sec" name="datefrom" placeholder="Date From">
+      </div>
+      <div class="form-group">
+          <label for="dateto" class="form-control-sm mb-2 mr-sm-2">Date To :</label>
+          <input [(ngModel)]="todate" type="date" class="form-control form-control-sm mb-2 mr-sm-2 app-sec" name="dateto" placeholder="Date To">
+      </div>
+      <div class="form-group">
+        <label for="dealercode" class="form-control-sm mb-2 mr-sm-2">Dealer Code:</label>
+        <input [(ngModel)]="searchdealercode" type="text" class="form-control form-control-sm mb-2 mr-sm-2 app-sec" name="searchdealercode" placeholder="Dealer Code">
+      </div>
+      <div class="form-group">
+          <label for="searchorderno" class="form-control-sm mb-2 mr-sm-2">Order No:</label>
+          <input [(ngModel)]="searchorderno" type="text" class="form-control form-control-sm mb-2 mr-sm-2 app-sec" name="searchorderno" placeholder="Order No">
+      </div>
+      <div class="form-group">
+        <input type="submit" (click)="searchOrderDetails()" value="Search" class="btn btn-success mb-2 form-control-sm" id="subbtn">
+      </div>
+    </div>
+</form>
+<!-- <form class="form-inline">
+    <div class="form-row">
+        <div class="form-group">
+          <label for="datefrom" class="form-control-sm mb-2 mr-sm-2">Date From</label>
+          <input type="date" class="form-control form-control-sm mb-2 mr-sm-2 app-sec" name="datefrom" placeholder="Date From">
+        </div>
+        <div class="form-group">
+            <label for="dateto" class="form-control-sm mb-2 mr-sm-2">Date To</label>
+            <input type="date" class="form-control form-control-sm mb-2 mr-sm-2 app-sec" name="dateto" placeholder="Date To">
+        </div>
+        <div class="form-group">
+            <label for="dealercode" class="form-control-sm mb-2 mr-sm-2 approve-sec">Dealer Code:</label>
+            <select class="form-control form-control-sm mb-2 mr-sm-2" name="dealercode" id="">
+              <option value="">-- Select --</option>
+              <option value=""></option>
+              <option value=""></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="orderno" class="form-control-sm mb-2 mr-sm-2 approve-sec">Dealer Code:</label>
+            <select class="form-control form-control-sm mb-2 mr-sm-2" name="orderno" id="">
+              <option value="">-- Select --</option>
+              <option value=""></option>
+              <option value=""></option>
+            </select>
+        </div>
+        <div class="form-group">
+        <input type="submit" value="Search" class="btn btn-success mb-2 form-control-sm" id="subbtn">
+        </div>
+      </div>
+</form> -->
+
+<div class="tableHeight">
+    <!-- <table class="table table-bordered table-sm custTable">
+      <thead>
+        <tr>
+          <th>Select</th>
+          <th>State</th>
+          <th>Area</th>
+          <th>District</th>
+          <th>Town</th>
+          <th>Created On</th>
+          <th>Order No</th>
+          <th>Claim Settled Date</th>
+          <th>No. of days left for Reclaiming</th>
+          <th>Material No</th>
+          <th>Material Description</th>
+          <th>Frame No</th>
+          <th>Pending With</th>
+          <th>Status</th>
+          <th>Pending From</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><a href="#">Select</a></td>
+          <td>Doe</td>
+          <td>john@example.com</td>
+          <td>John</td>
+          <td>Doe</td>
+          <td>john@example.com</td>
+          <td>John</td>
+          <td>Doe</td>
+          <td>john@example.com</td>
+          <td>John</td>
+          <td>Doe</td>
+          <td>john@example.com</td>
+          <td>John</td>
+          <td>Doe</td>
+          <td>john@example.com</td>
+        </tr>
+        <tr>
+          <td><a href="#">Select</a></td>
+          <td>Doe</td>
+          <td>john@example.com</td>
+          <td>John</td>
+          <td>Doe</td>
+          <td>john@example.com</td>
+          <td>John</td>
+          <td>Doe</td>
+          <td>john@example.com</td>
+          <td>John</td>
+          <td>Doe</td>
+          <td>john@example.com</td>
+          <td>John</td>
+          <td>Doe</td>
+          <td>john@example.com</td>
+        </tr>
+        <tr>
+          <td><a href="#">Select</a></td>
+          <td>Doe</td>
+          <td>john@example.com</td>
+          <td>John</td>
+          <td>Doe</td>
+          <td>john@example.com</td>
+          <td>John</td>
+          <td>Doe</td>
+          <td>john@example.com</td>
+          <td>John</td>
+          <td>Doe</td>
+          <td>john@example.com</td>
+          <td>John</td>
+          <td>Doe</td>
+          <td>john@example.com</td>
+        </tr>
+        <tr>
+          <td><a href="#">Select</a></td>
+          <td>Doe</td>
+          <td>john@example.com</td>
+          <td>John</td>
+          <td>Doe</td>
+          <td>john@example.com</td>
+          <td>John</td>
+          <td>Doe</td>
+          <td>john@example.com</td>
+          <td>John</td>
+          <td>Doe</td>
+          <td>john@example.com</td>
+          <td>John</td>
+          <td>Doe</td>
+          <td>john@example.com</td>
+        </tr>
+        <tr>
+          <td><a href="#">Select</a></td>
+          <td>Doe</td>
+          <td>john@example.com</td>
+          <td>John</td>
+          <td>Doe</td>
+          <td>john@example.com</td>
+          <td>John</td>
+          <td>Doe</td>
+          <td>john@example.com</td>
+          <td>John</td>
+          <td>Doe</td>
+          <td>john@example.com</td>
+          <td>John</td>
+          <td>Doe</td>
+          <td>john@example.com</td>
+        </tr>
+        <tr>
+          <td><a href="#">Select</a></td>
+          <td>Doe</td>
+          <td>john@example.com</td>
+          <td>John</td>
+          <td>Doe</td>
+          <td>john@example.com</td>
+          <td>John</td>
+          <td>Doe</td>
+          <td>john@example.com</td>
+          <td>John</td>
+          <td>Doe</td>
+          <td>john@example.com</td>
+          <td>John</td>
+          <td>Doe</td>
+          <td>john@example.com</td>
+        </tr>
+        <tr>
+          <td><a href="#">Select</a></td>
+          <td>Doe</td>
+          <td>john@example.com</td>
+          <td>John</td>
+          <td>Doe</td>
+          <td>john@example.com</td>
+          <td>John</td>
+          <td>Doe</td>
+          <td>john@example.com</td>
+          <td>John</td>
+          <td>Doe</td>
+          <td>john@example.com</td>
+          <td>John</td>
+          <td>Doe</td>
+          <td>john@example.com</td>
+        </tr>
+        <tr>
+          <td><a href="#">Select</a></td>
+          <td>Doe</td>
+          <td>john@example.com</td>
+          <td>John</td>
+          <td>Doe</td>
+          <td>john@example.com</td>
+          <td>John</td>
+          <td>Doe</td>
+          <td>john@example.com</td>
+          <td>John</td>
+          <td>Doe</td>
+          <td>john@example.com</td>
+          <td>John</td>
+          <td>Doe</td>
+          <td>john@example.com</td>
+        </tr>
+        <tr>
+          <td><a href="#">Select</a></td>
+          <td>Doe</td>
+          <td>john@example.com</td>
+          <td>John</td>
+          <td>Doe</td>
+          <td>john@example.com</td>
+          <td>John</td>
+          <td>Doe</td>
+          <td>john@example.com</td>
+          <td>John</td>
+          <td>Doe</td>
+          <td>john@example.com</td>
+          <td>John</td>
+          <td>Doe</td>
+          <td>john@example.com</td>
+        </tr>
+        <tr>
+          <td><a href="#">Select</a></td>
+          <td>Doe</td>
+          <td>john@example.com</td>
+          <td>John</td>
+          <td>Doe</td>
+          <td>john@example.com</td>
+          <td>John</td>
+          <td>Doe</td>
+          <td>john@example.com</td>
+          <td>John</td>
+          <td>Doe</td>
+          <td>john@example.com</td>
+          <td>John</td>
+          <td>Doe</td>
+          <td>john@example.com</td>
+        </tr>
+        <tr>
+          <td><a href="#">Select</a></td>
+          <td>Doe</td>
+          <td>john@example.com</td>
+          <td>John</td>
+          <td>Doe</td>
+          <td>john@example.com</td>
+          <td>John</td>
+          <td>Doe</td>
+          <td>john@example.com</td>
+          <td>John</td>
+          <td>Doe</td>
+          <td>john@example.com</td>
+          <td>John</td>
+          <td>Doe</td>
+          <td>john@example.com</td>
+        </tr>
+        <tr>
+          <td><a href="#">Select</a></td>
+          <td>Doe</td>
+          <td>john@example.com</td>
+          <td>John</td>
+          <td>Doe</td>
+          <td>john@example.com</td>
+          <td>John</td>
+          <td>Doe</td>
+          <td>john@example.com</td>
+          <td>John</td>
+          <td>Doe</td>
+          <td>john@example.com</td>
+          <td>John</td>
+          <td>Doe</td>
+          <td>john@example.com</td>
+        </tr>
+      </tbody>
+    </table> -->
+    <table class="table table-bordered table-sm custTable">
+      <thead>
+        <tr>
+          <th>Select</th>
+          <!-- <th>State</th>
+          <th>Area</th>
+          <th>District</th> -->
+          <th>City</th>
+          <th>Created On</th>
+          <th>Order No</th>
+          <th>Claim Settled Date</th>
+          <th>No. of days left for Reclaiming</th>
+          <th>Material No</th>
+          <th>Material Description</th>
+          <th>Frame No</th>
+          <th>Pending With</th>
+          <th>Status</th>
+          <th>Pending From</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of orderDetails">
+          <td><a role="button" class="selectItem" (click)="fetchReqDetails(item.ID)">Select</a></td>
+          <!-- <td>xxx</td>
+          <td>john@example.com</td>
+          <td>John</td> -->
+          <td>{{item.CITY}}</td>
+          <td>{{item.CREATED_ON | date:'dd-MM-yyyy'}}</td>
+          <td>{{item.ORDER_NUMBER}}</td>
+          <td>{{item.CLAIM_SETTLED_DATE | date:'dd-MM-yyyy'}}</td>
+          <td>{{item.DAYS_LEFT_FOR_RECLAIMING}}</td>
+          <td>{{item.PART_NUMBER}}</td>
+          <td>{{item.PART_DESCRIPTION}}</td>
+          <td>{{item.FRAME_NUMBER}}</td>
+          <td>TM</td>
+          <td *ngIf= "item.STATUS !== 'Q'">Pending for Approval</td>
+          <td *ngIf= "item.STATUS === 'Q'">Pending for Query</td>
+          <td>{{item.CREATED_ON | date:'dd-MM-yyyy'}}</td>
+        </tr>
+      </tbody>
+    </table>
+</div>
+<p></p>
+<div *ngIf="displayDetailSec">
+  <div>
+    <h4 class="custHomeHead">Application Details</h4>
+  </div>
+  <div class="jumbotron jumbo2">
+    <!-- <form>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="claimsettleddate" class="form-control-sm mb-2 mr-sm-2">Claim Settled Date</label>
+          <input disabled [(ngModel)]="claimsettleddate" type="date" class="form-control form-control-sm mb-2 mr-sm-2 app-sec" name="claimsettleddate" placeholder="Claim Settled Date">
+        </div>
+        <div class="form-group">
+          <label for="daysleft" class="form-control-sm mb-2 mr-sm-2">Days left for Reclaiming</label>
+          <input disabled [(ngModel)]="daysleft" type="text" class="form-control form-control-sm mb-2 mr-sm-2 app-sec" name="daysleft" placeholder="Days left for Reasoning">
+        </div>
+        <div class="form-group">
+          <label for="partno" class="form-control-sm mb-2 mr-sm-2">Part Number</label>
+          <input disabled [(ngModel)]="partno" type="text" class="form-control form-control-sm mb-2 mr-sm-2 app-sec" name="partno" placeholder="Part Number">
+        </div>
+        <div class="form-group">
+          <label for="partdesc" class="form-control-sm mb-2 mr-sm-2">Part Description</label>
+          <input disabled [(ngModel)]="partdesc" type="text" class="form-control form-control-sm mb-2 mr-sm-2 app-sec" name="partdesc" placeholder="Part Description">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="frameno" class="form-control-sm mb-2 mr-sm-2">Frame Number</label>
+          <input disabled [(ngModel)]="frameno" type="text" class="form-control form-control-sm mb-2 mr-sm-2 app-sec" name="frameno" placeholder="Frame Number">
+        </div>
+        <div class="form-group">
+          <label for="kms" class="form-control-sm mb-2 mr-sm-2">Kms</label>
+          <input disabled [(ngModel)]="kms" type="text" class="form-control form-control-sm mb-2 mr-sm-2 app-sec" name="kms" placeholder="Kms">
+        </div>
+        <div class="form-group">
+          <label for="salesdate" class="form-control-sm mb-2 mr-sm-2">Sales Date</label>
+          <input disabled [(ngModel)]="salesdate" type="date" class="form-control form-control-sm mb-2 mr-sm-2 app-sec" name="salesdate" placeholder="Sales Date">
+        </div>
+        <div class="form-group">
+          <label for="repairdate" class="form-control-sm mb-2 mr-sm-2">Repair Date</label>
+          <input disabled [(ngModel)]="repairdate" type="date" class="form-control form-control-sm mb-2 mr-sm-2 app-sec" name="repairdate" placeholder="Repair date">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="model" class="form-control-sm mb-2 mr-sm-2">Model</label>
+          <input disabled [(ngModel)]="model" type="text" class="form-control form-control-sm mb-2 mr-sm-2 app-sec" name="model" placeholder="Model">
+        </div>
+        <div class="form-group">
+          <label for="ndprate" class="form-control-sm mb-2 mr-sm-2">NDP Rate</label>
+          <input disabled [(ngModel)]="ndprate" type="text" class="form-control form-control-sm mb-2 mr-sm-2 app-sec" name="ndprate" placeholder="NDP Rate">
+        </div>
+        <div class="form-group">
+          <label for="dealercode" class="form-control-sm mb-2 mr-sm-2">Dealer Code</label>
+          <input disabled [(ngModel)]="dealercode" type="text" class="form-control form-control-sm mb-2 mr-sm-2 app-sec" name="dealercode" placeholder="Dealer Code">
+        </div>
+        <div class="form-group">
+          <label for="dealername" class="form-control-sm mb-2 mr-sm-2">Dealer Name</label>
+          <input disabled [(ngModel)]="dealername" type="text" class="form-control form-control-sm mb-2 mr-sm-2 app-sec" name="dealername" placeholder="Dealer Name">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="reasonforrejection" class="form-control-sm mb-2 mr-sm-2">Reason for Rejection</label>
+          <textarea disabled [(ngModel)]="reasonforrejection" name="reasonforrejection" class="form-control form-control-sm mb-2 mr-sm-2 app-sec" cols="30" rows="3"></textarea>
+        </div>
+        <div class="form-group">
+          <label for="justification" class="form-control-sm mb-2 mr-sm-2">Justification</label>
+          <textarea disabled [(ngModel)]="justification" name="justification" class="form-control form-control-sm mb-2 mr-sm-2 app-sec" cols="30" rows="3"></textarea>
+        </div>
+        <div class="form-group">
+          <label for="city" class="form-control-sm mb-2 mr-sm-2">City</label>
+          <input disabled [(ngModel)]="city" type="text" class="form-control form-control-sm mb-2 mr-sm-2 app-sec" name="city" placeholder="City">
+        </div>
+        <div class="form-group">
+          <label for="uploaddocs" class="form-control-sm mb-2 mr-sm-2">Upload Documents</label>
+          <input disabled type="file" class="form-control-file form-control-sm  app-sec" name="uploaddocs">
+        </div>
+      </div>
+    </form> -->
+    <form>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="claimsettleddate" class="form-control-sm mb-2 mr-sm-2">Claim Settled Date</label>
+          <input disabled [(ngModel)]="claimsettleddate" type="date" class="form-control form-control-sm mb-2 mr-sm-2 app-sec" name="claimsettleddate" placeholder="Claim Settled Date">
+        </div>
+        <div class="form-group">
+          <label for="daysleft" class="form-control-sm mb-2 mr-sm-2">Days left for Reclaiming</label>
+          <input disabled [(ngModel)]="daysleft" type="text" class="form-control form-control-sm mb-2 mr-sm-2 app-sec" name="daysleft" placeholder="Days left for Reasoning">
+        </div>
+        <div class="form-group">
+          <label for="partno" class="form-control-sm mb-2 mr-sm-2">Part Number</label>
+          <input disabled [(ngModel)]="partno" type="text" class="form-control form-control-sm mb-2 mr-sm-2 app-sec" name="partno" placeholder="Part Number">
+        </div>
+        <div class="form-group">
+          <label for="partdesc" class="form-control-sm mb-2 mr-sm-2">Part Description</label>
+          <input disabled [(ngModel)]="partdesc" type="text" class="form-control form-control-sm mb-2 mr-sm-2 app-sec" name="partdesc" placeholder="Part Description">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="frameno" class="form-control-sm mb-2 mr-sm-2">Frame Number</label>
+          <input disabled [(ngModel)]="frameno" type="text" class="form-control form-control-sm mb-2 mr-sm-2 app-sec" name="frameno" placeholder="Frame Number">
+        </div>
+        <div class="form-group">
+          <label for="kms" class="form-control-sm mb-2 mr-sm-2">Kms</label>
+          <input disabled [(ngModel)]="kms" type="text" class="form-control form-control-sm mb-2 mr-sm-2 app-sec" name="kms" placeholder="Kms">
+        </div>
+        <div class="form-group">
+          <label for="salesdate" class="form-control-sm mb-2 mr-sm-2">Sales Date</label>
+          <input disabled [(ngModel)]="salesdate" type="date" class="form-control form-control-sm mb-2 mr-sm-2 app-sec" name="salesdate" placeholder="Sales Date">
+        </div>
+        <div class="form-group">
+          <label for="repairdate" class="form-control-sm mb-2 mr-sm-2">Repair Date</label>
+          <input disabled [(ngModel)]="repairdate" type="date" class="form-control form-control-sm mb-2 mr-sm-2 app-sec" name="repairdate" placeholder="Repair date">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="model" class="form-control-sm mb-2 mr-sm-2">Model</label>
+          <input disabled [(ngModel)]="model" type="text" class="form-control form-control-sm mb-2 mr-sm-2 app-sec" name="model" placeholder="Model">
+        </div>
+        <div class="form-group">
+          <label for="ndprate" class="form-control-sm mb-2 mr-sm-2">NDP Rate</label>
+          <input disabled [(ngModel)]="ndprate" type="text" class="form-control form-control-sm mb-2 mr-sm-2 app-sec" name="ndprate" placeholder="NDP Rate">
+        </div>
+        <div class="form-group">
+          <label for="dealercode" class="form-control-sm mb-2 mr-sm-2">Dealer Code</label>
+          <input disabled [(ngModel)]="dealercode" type="text" class="form-control form-control-sm mb-2 mr-sm-2 app-sec" name="dealercode" placeholder="Dealer Code">
+        </div>
+        <div class="form-group">
+          <label for="dealername" class="form-control-sm mb-2 mr-sm-2">Dealer Name</label>
+          <input disabled [(ngModel)]="dealername" type="text" class="form-control form-control-sm mb-2 mr-sm-2 app-sec" name="dealername" placeholder="Dealer Name">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="reasonforrejection" class="form-control-sm mb-2 mr-sm-2">Reason for Rejection</label>
+          <textarea disabled [(ngModel)]="reasonforrejection" name="reasonforrejection" class="form-control form-control-sm mb-2 mr-sm-2 app-sec" cols="30" rows="3"></textarea>
+        </div>
+        <div class="form-group">
+          <label for="justification" class="form-control-sm mb-2 mr-sm-2">Justification</label>
+          <textarea disabled [(ngModel)]="justification" name="justification" class="form-control form-control-sm mb-2 mr-sm-2 app-sec" cols="30" rows="3"></textarea>
+        </div>
+        <div class="form-group">
+          <label for="city" class="form-control-sm mb-2 mr-sm-2">City</label>
+          <input disabled [(ngModel)]="city" type="text" class="form-control form-control-sm mb-2 mr-sm-2 app-sec" name="city" placeholder="City">
+        </div>
+        <!-- <div class="form-group">
+          <label for="uploaddocs" class="form-control-sm mb-2 mr-sm-2">Upload Documents</label>
+          <input disabled type="file" class="form-control-file form-control-sm  app-sec" name="uploaddocs">
+        </div> -->
+      </div>
+    </form>
+  </div>
+  
+  <div>
+    <h4 class="custHomeHead">Documents</h4>
+  </div>
+  <!-- <table class=" custDocTable">
+    <tr>
+      <td class="app-rem">Application, AO recommendation</td>
+      <td>Territory Manager</td>
+      <td>03-05-2021 17:49</td>
+      <td><a href="#">102115790_AD_DealerApplication - Paravai.pdf</a></td>
+    </tr>
+    <tr>
+      <td class="app-rem">Application, AO recommendation</td>
+      <td>Territory Manager</td>
+      <td>03-05-2021 17:49</td>
+      <td><a href="#">102115790_AD_DealerApplication - Paravai.pdf</a></td>
+    </tr>
+    <tr>
+      <td class="app-rem">Application, AO recommendation</td>
+      <td>Territory Manager</td>
+      <td>03-05-2021 17:49</td>
+      <td><a href="#">102115790_AD_DealerApplication - Paravai.pdf</a></td>
+    </tr>
+    <tr>
+      <td class="app-rem">Application, AO recommendation</td>
+      <td>Territory Manager</td>
+      <td>03-05-2021 17:49</td>
+      <td><a href="#">102115790_AD_DealerApplication - Paravai.pdf</a></td>
+    </tr>
+  </table> -->
+  <table class="custDocTable">
+    <tr *ngFor="let file of fileList">
+      <!-- <td class="app-rem">Application, AO recommendation</td> -->
+      <td>Dealer</td>
+      <td>{{ file.CREATED_ON }}</td>
+      <td><a href="http://localhost:3000/api/fileDownload?fileName={{ file.FILE_NAME }}">{{ file.FILE_NAME }}</a></td>
+    </tr>
+  </table>
+  
+  <div>
+    <h4 class="custHomeHead">Escalation Details</h4>
+  </div>
+  <!-- <table class="esc-table">
+    <tbody>
+      <tr>
+        <td class="esc-data">
+          From: &nbsp; P R Anandan
+        </td>
+        <td class="esc-data">
+          To: &nbsp; A Vengadesh
+        </td>
+        <td class="esc-data">
+          Date & Time: &nbsp;
+          06-05-2021 20:23
+        </td>
+      </tr>
+      <tr>
+        <td class="esc-data remarks-sec" colspan="6">
+          Please get the Net worth Certificate and liquidity certificate in the specified format in CA Letterhead.
+        </td>
+      </tr>
+      <br>
+      <tr>
+        <td class="esc-data">
+          From: &nbsp; P R Anandan
+        </td>
+        <td class="esc-data">
+          To: &nbsp; A Vengadesh
+        </td>
+        <td class="esc-data">
+          Date & Time: &nbsp;
+          06-05-2021 20:23
+        </td>
+      </tr>
+      <tr>
+        <td class="esc-data remarks-sec" colspan="6">
+          Please get the Net worth Certificate and liquidity certificate in the specified format in CA Letterhead.
+        </td>
+      </tr>
+    </tbody>
+  </table> -->
+  <table class="esc-table">
+    <tbody *ngFor="let esc of escalationList">
+      <tr>
+        <td class="esc-data">
+          From: &nbsp; {{ esc.FROM_EMPNAME }}
+        </td>
+        <td class="esc-data">
+          To: &nbsp; {{ esc.TO_EMPNAME }}
+        </td>
+        <td class="esc-data">
+          Date & Time: &nbsp;
+          {{ esc.CREATED_ON }}
+        </td>
+      </tr>
+      <tr>
+        <td class="esc-data remarks-sec" colspan="6">
+          {{ esc.REMARKS }}
+        </td>
+      </tr>
+      <br>
+    </tbody>
+  </table>
+</div>

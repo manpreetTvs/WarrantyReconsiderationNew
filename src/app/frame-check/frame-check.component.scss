@@ -1,0 +1,370 @@
+@import '../../assets/partials/table.scss';
+@import '../../assets/partials/job-card.scss';
+
+//jobcard-media.scss
+// Job card list media queries
+@media (min-width: 300px) and (max-width: 992px) {
+
+    :host ::ng-deep app-filter-card:nth-child(1),
+    :host ::ng-deep app-filter-card:nth-child(2),
+    :host ::ng-deep app-filter-card:nth-child(3) {
+        mat-card {
+            border-bottom: 1px solid #dcdcdc;
+            border-radius: 0;
+        }
+    }
+
+    :host ::ng-deep app-filter-card:nth-child(1),
+    :host ::ng-deep app-filter-card:nth-child(4) {
+        mat-card {
+            border-left: none;
+        }
+    }
+}
+
+@media (min-width: 300px) and (max-width: 768px) {
+    .filter-date {
+        padding: 5px 0;
+    }
+
+    :host ::ng-deep app-filter-card {
+        mat-card {
+            height: 50px !important;
+        }
+    }
+
+    .right-buttons {
+        padding: 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    :host ::ng-deep p-calendar.jc-list input[type=text] {
+        height: 30px !important;
+    }
+
+    //Header Styles
+    main {
+        header {
+            padding: 5px !important;
+        }
+
+        .filter-date {
+            .date-btn {
+                margin-bottom: 5px !important;
+            }
+
+            button {
+                padding: 5px !important;
+            }
+        }
+
+        .createBtn {
+            margin-bottom: 0px !important;
+        }
+
+        .search-box input {
+            padding: 10px 12px !important;
+        }
+
+        button,
+        input {
+            height: 30px !important;
+        }
+
+        .RefreshBtn {
+            margin-bottom: 0px !important;
+        }
+
+        .search-btn {
+            .search-icon {
+                padding: 7px 10px !important
+            }
+        }
+    }
+}
+
+@media (min-width: 768px) and (max-width: 992px) {
+    .right-buttons {
+        padding: 22px 20px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    input {
+        height: 40px !important;
+    }
+}
+
+@media (min-width: 992px) and (max-width: 1200px) {
+    .right-buttons {
+        width: 10%;
+    }
+
+    .filter-date {
+        width: 30%;
+    }
+
+    .createBtn {
+        margin-bottom: 12px;
+    }
+
+    input {
+        height: 40px !important;
+    }
+}
+
+@media (min-width: 1200px) {
+    .right-buttons {
+        width: 10%;
+    }
+
+    .filter-date {
+        width: 31%;
+    }
+
+    .createBtn {
+        margin-bottom: 12px;
+    }
+
+    :host ::ng-deep app-filter-card:nth-child(1) {
+        mat-card {
+            border-left: none;
+        }
+    }
+
+    input {
+        height: 40px !important;
+    }
+}
+
+
+//jobcard-component.scss
+
+@mixin header-btn {
+    .input-group {
+        
+        background: white;
+        border-radius: 8px;
+        input {
+            border: none !important;
+            border-radius: 0 !important;
+            box-shadow: none !important;
+            // padding-left: 12px !important;
+            padding:20px 12px;
+            color: #1c1c1c !important;
+            font-family: var(--fontName);
+            font-size: 12px !important;
+            font-weight: 700 !important;
+            // outline: none;
+        }
+        .input-group-addon {
+            padding: 0;
+        }
+        .input-group-btn {
+            cursor: pointer;
+        }
+        span {
+            background: none;
+            border: none;
+        }
+    }
+    button {
+        border-color: transparent;
+    }
+}
+
+main {
+    height: 100vh;
+    overflow: auto;
+    header {
+        border-bottom: 1px solid #c1c1c1;
+        background-color: #f4faff;
+        padding: 14px;
+        margin: 0;
+        align-items: center;
+        .filter-card {
+            padding: 0;
+            margin: 0;
+            border: 1px solid #dcdcdc;
+            border-radius: 5px;
+            app-filter-card {
+                padding: 0;
+                margin: 0;
+            }
+        }
+        .filter-date {
+            flex-direction: column;
+            display: flex;
+            padding-right: 0;
+            .search-btn,
+            .date-btn {
+                margin: 0px;
+                border-radius: 8px;
+                border: 1px solid #dcdcdc;
+                background-color: #ffffff;
+                .search-box .search-icon {
+                    padding: 12px;
+                    background: #cad5df;
+                    border-top-right-radius: 7px;
+                    border-bottom-right-radius: 7px;
+                    cursor: pointer;
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                }
+            }
+            .search-box {
+                input[type="text"]:disabled {
+                    background: #cad5df !important;
+                    opacity: 0.4;
+                    cursor: not-allowed;
+                }
+            }
+            .search-btn {
+                border-right: none;
+            }
+            .date-btn {
+                margin: 0;
+                margin-bottom: 8px;
+                .btn-1 {
+                    border-right: 1px solid #dcdcdc;
+                }
+            }
+            .dropdown-btn {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                border-top-right-radius: 0;
+                border-bottom-right-radius: 0;
+            }
+            .date-pick-btn {
+                padding: 0;
+                input {
+                    pointer-events: none;
+                }
+            }
+            @include header-btn();
+        }
+        .createBtn {
+            width: 120px;
+        }
+        .btn {
+            border: 1px solid #dcdcdc;
+            background-color: #cad5df;
+            color: #263542;
+            font-family: var(--fontName);
+            font-size: 12px;
+            font-weight: 500;
+            padding: 10px;
+            height: 40px;
+        }
+    }
+    section {
+        padding: 0px 10px;
+    }
+}
+
+:host ::ng-deep app-filter-card:first-child mat-card {
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+:host ::ng-deep app-filter-card:last-child {
+    mat-card {
+        border-right: 1px solid #eee;
+        border-top-right-radius: 5px;
+        border-bottom-right-radius: 5px;
+    }
+}
+
+
+
+:host ::ng-deep datatable-body {
+    max-height: calc(100vh - 295px);
+    overflow: auto;
+}
+
+:host ::ng-deep .nav-pills {
+    border: 1px solid #00599d;
+    border-radius: 8px;
+    height: 32px;
+    overflow: hidden;
+    background: white;
+    width: 482px !important;
+    margin-bottom: 12px;
+    margin-top: 12px;
+
+    >li {
+        width: 160px !important;
+
+        // &:last-child {
+        //     >a {
+        //         padding: 6px 16px !important;
+        //     }
+        // }
+    }
+}
+
+:host ::ng-deep .filter-date {
+    .search-btn {
+        border-right: 1px solid #dcdcdc !important;
+
+        .search-box {
+            .input-group {
+                >input {
+                    border-radius: 8px !important;
+                }
+            }
+        }
+    }
+}
+
+@media (min-width: 1200px) {
+    .vehihead {
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    .filter-date:last-child {
+        flex-direction: row !important;
+        justify-content: flex-end;
+    }
+}
+
+@media (min-width: 320px) and (max-width: 480px) and (orientation: portrait) {
+
+    .filter-date:nth-child(2),
+    .filter-date:nth-child(4) {
+        padding-left: 5px;
+    }
+
+    .filter-date:last-child {
+        flex-direction: row !important;
+        justify-content: flex-end;
+    }
+
+    :host ::ng-deep .nav-pills {
+        width: 100% !important;
+
+        li {
+            width: 33.333% !important;
+
+            a {
+                padding: 8px 20px !important;
+                font-size: 9px !important;
+            }
+        }
+    }
+}
+
+.custApprovalHead {
+    color: #fff;
+    background-color: #337ab7;
+    border-color: #337ab7;
+    padding: 10px 15px;
+    font-family: Tahoma,Arial,Verdana;
+    font-size: 12px;
+}

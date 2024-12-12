@@ -1,0 +1,128 @@
+:host ::ng-deep datatable-body {
+    max-height: calc(100vh - 293px);
+    overflow: auto;
+}
+
+:host ::ng-deep .datatable-body-cell-label .name {
+    color: #00599d;
+
+    .bullet-point {
+        background-color: #00599d;
+    }
+}
+
+:host ::ng-deep .datatable-body-cell-label .unAllocated {
+    color: #5a7ad5;
+    .bullet-point {
+        background-color: #5a7ad5;
+    }
+}
+
+:host ::ng-deep .datatable-body-cell-label .allocated {
+    color: #a73c9e;
+
+    .bullet-point {
+        background-color: #a73c9e;
+    }
+}
+
+:host ::ng-deep .datatable-body-cell-label .suspend {
+    color: #d84141;
+
+    .bullet-point {
+        background-color: #d84141;
+    }
+}
+
+:host ::ng-deep .datatable-body-cell-label .cancelled {
+    color: rgb(236, 28, 36);
+
+    .bullet-point {
+        background-color: rgb(236, 28, 36);
+    }
+}
+
+:host ::ng-deep .datatable-body-cell-label .invoiced {
+    color: #00599d;
+
+    .bullet-point {
+        background-color: #00599d;
+    }
+}
+
+:host ::ng-deep .datatable-body-cell-label .jobCompleted {
+    color: rgb(222, 149, 8);
+
+    .bullet-point {
+        background-color: rgb(222, 149, 8);
+    }
+}
+
+:host ::ng-deep .datatable-body-cell-label .closed {
+    color: #03a872;
+
+    .bullet-point {
+        background-color: #03a872;
+    }
+}
+
+
+:host ::ng-deep .datatable-body-cell-label .status {
+    display: flex;
+    align-items: center;
+}
+
+:host ::ng-deep .datatable-body-cell-label {
+    .pre-dev-date {
+        display: flex;
+        align-items: center;
+        border-radius: 12px;
+        width: auto;
+        max-width: 150px;
+        padding-right: 5px;
+    }
+
+    .border-yellow {
+        border: 1px solid rgba(222, 149, 8, 0.5);
+        color: #de9508;
+    }
+
+    .border-black {
+        border: 1px solid rgba(34, 34, 34, 0.5);
+        color: #222222;
+    }
+
+    .border-red {
+        border: 1px solid rgba(216, 70, 76, 0.5);
+        color: #ed1c24;
+    }
+
+    img {
+        padding: 3px 5px 4px 5px;
+    }
+}
+
+:host ::ng-deep .datatable-body-cell-label:last-child {
+    cursor: pointer;
+}
+
+:host ::ng-deep .resizeable {
+    background: #e4e9ed;
+}
+
+:host ::ng-deep .more-icon {
+    text-align: center;
+    cursor: pointer;
+}
+
+@media (min-width: 300px) and (max-width: 768px) {
+    :host ::ng-deep datatable-body {
+        max-height: calc(100vh - 375px);
+    }
+}
+
+@media (min-width: 768px) and (max-width: 992px) {
+    :host ::ng-deep datatable-body {
+        max-height: calc(100vh - 347px);
+    }
+}

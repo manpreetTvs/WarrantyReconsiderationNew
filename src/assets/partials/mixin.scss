@@ -1,0 +1,4 @@
+@mixin ellipse(){
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

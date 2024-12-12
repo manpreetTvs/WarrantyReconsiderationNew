@@ -1,0 +1,229 @@
+<div>
+    <h4 class="custApprovalHead">Super Approval</h4>
+    <form class="form-inline form-bg">
+      <div class="form-row">
+          <div class="form-group">
+            <label for="datefrom" class="form-control-sm mb-2 mr-sm-2">Date From :</label>
+            <input [(ngModel)]="fromdate" type="date"
+             class="form-control form-control-sm mb-2 mr-sm-2 app-sec" name="datefrom" placeholder="Date From">
+          </div>
+          <div class="form-group">
+              <label for="dateto" class="form-control-sm mb-2 mr-sm-2">Date To :</label>
+              <input [(ngModel)]="todate" type="date" 
+              class="form-control form-control-sm mb-2 mr-sm-2 app-sec" name="dateto" placeholder="Date To">
+          </div>
+          <!-- <div class="form-group">
+            <label for="dealercode" class="form-control-sm mb-2 mr-sm-2">Dealer Code:</label>
+            <input [(ngModel)]="searchdealercode" 
+            type="text" class="form-control form-control-sm mb-2 mr-sm-2 app-sec" name="searchdealercode" placeholder="Dealer Code">
+          </div> -->
+          <!-- <div class="form-group">
+              <label for="stage" class="form-control-sm mb-2 mr-sm-2">Status :</label>
+              <select  class="form-control form-control-sm mb-2 mr-sm-2" name="tmdrpdwn" 
+              [(ngModel)]="stage">
+                  <option  value="">Select Status</option>
+                  <option  value="Pending">Pending</option>
+                  <option  value="Completed">Completed</option>
+                 
+                </select>
+          </div> -->
+          <!-- <div class="form-group">
+              <label for="dealercode" class="form-control-sm mb-2 mr-sm-2 approve-sec">Dealer Code:</label>
+              <select [(ngModel)]="searchdealercode" class="form-control form-control-sm mb-2 mr-sm-2" name="dealercode" id="">
+                <option value="">-- Select --</option>
+                <option value=""></option>
+                <option value=""></option>
+              </select>
+          </div>
+          <div class="form-group">
+              <label for="searchorderno" class="form-control-sm mb-2 mr-sm-2 approve-sec">Order No:</label>
+              <select class="form-control form-control-sm mb-2 mr-sm-2" name="orderno" id="">
+                <option value="">-- Select --</option>
+                <option value=""></option>
+                <option value=""></option>
+              </select>
+          </div> -->
+          <div class="form-group">
+            <input type="submit" (click)="search()" value="Search" class="btn btn-success mb-2 form-control-sm" id="subbtn">
+          </div>
+        </div>
+  </form>
+    <div class="tableHeight">
+        <table class="table table-bordered table-sm custTable">
+            <thead>
+            <tr>
+              <th>Select</th>
+              <th>Dealer Code</th>
+              <th>Dealer Name</th>
+              <th>Town</th>
+              <th>Order No</th>
+              <th>Claim Settled Date</th>
+              <th>Total Number of Parts taken for special Approval</th>
+              <th>Request letter from Dealer to TM/ASM</th>
+              <th>Request letter from ASM to VP  Service</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let item of superQueryData">
+              <td><a role="button" class="selectItem" (click)="getRequestByDetails(item)">Select</a></td>
+              <td>{{ item.DEALER_CODE }}</td>
+              <td>{{ item.DEALER_NAME }}</td>
+              <td>{{ item.TOWN }}</td>
+              <td>{{ item.ORDER_NO }}</td>
+              <td>{{ item.CLAIM_SETTLED_DATE |date:'dd-MM-yyyy'}}</td>
+              <td>{{ item.TOTAL_PARTS }}</td>
+              <td class="view-sec">
+                <a href="https://www.advantagetvs.com/ReconsiderationAPI/Creation/fileDownload?fileName={{ item.REQUEST_LETTER_DEA_TM_ASM }}">
+                <!-- <a href="http://localhost:51539/Creation/fileDownload?fileName={{ item.REQUEST_LETTER_DEA_TM_ASM }}"> -->
+                  <img src="..\assets\images\view.png" alt="view">
+                </a>
+              </td>
+              <td class="view-sec">
+                <!-- <a href="http://localhost:51539/Creation/fileDownload?fileName={{ item.REQUEST_LETTER_ASM_VP}}"> -->
+                <a href="https://www.advantagetvs.com/ReconsiderationAPI/Creation/fileDownload?fileName={{ item.REQUEST_LETTER_ASM_VP}}">
+                  <img src="..\assets\images\view.png" alt="view">
+                </a>
+              </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div *ngIf="displayDetailSec">
+      <div>
+        <h4 class="custHomeHead">Reply</h4>
+    </div>
+    <form>
+        <div class="row form-row">
+          <div class="form-group col-md-3">
+            <label for="query" class="form-control-sm mb-2 mr-sm-2 approve-sec">Reply</label>
+            <textarea  name="query"  [(ngModel)]="superQuery.REMARKS"
+            class="form-control form-control-sm mb-2 mr-sm-2" cols="30" rows="3"></textarea>
+          </div>&nbsp;&nbsp;&nbsp;
+          <!-- <div class="form-check form-group col-md-3">
+            <br><br>
+            <input type="checkbox" class="form-check-input" id="splhigh">
+            <label class="form-check-label approve-sec" for="splhigh">Special Hightlight</label>
+          </div> -->
+          <!-- <div class="form-group col-md-3">
+            <label for="queryto" class="form-control-sm mb-2 mr-sm-2 approve-sec">Query To :</label>
+            <select [(ngModel)]="querySelected" (change)="selectedQueryTo($event)" class="form-control form-control-sm mb-2 mr-sm-2" name="queryto" id="">
+              <option *ngFor="let queryTo of QueryToList" [value]="queryTo.FROM_EMPNO">{{ queryTo.FROM_EMPNAME }}</option>
+            </select>
+          </div> -->
+          <div style="margin-top:50px">
+            <label for="queryto" class="form-control-sm mb-2 mr-sm-2 approve-sec">Reply To :</label>
+            <input id="txt" type="text" name="reply" [(ngModel)]="from_empname" disabled></div>
+          <div class="form-group query-btn" style="padding-top:60px;padding:50px">
+            <input type="submit" (click)="reply()" value="Send Reply" class="btn btn-outline-secondary mb-2 form-control-sm" id="subbtn">
+          </div>
+        </div>
+    </form>
+    <div>
+      <h4 class="custHomeHead">Approval Details</h4>
+  </div>
+    <table class="esc-table">
+      <tbody>
+        <tr>
+          <td class="esc-data">
+            ASM: &nbsp; {{ approval.ASM }}
+          </td>
+          <td class="esc-data">
+            ASM Created Date: &nbsp; {{ approval.CREATED_ON | date:'dd-MM-yyyy'}}
+          </td>
+          <td class="esc-data">
+            ASM Remarks: &nbsp; {{ approval.ASM_REMARKS }}
+          </td>
+        </tr>
+        <tr>
+          <td> </td>
+          <td> </td>
+          <td> </td>
+        </tr>
+        <tr>
+          <td class="esc-data">
+            NSM: &nbsp; {{ approval.NSM }}
+          </td>
+          <td class="esc-data">
+            NSM Approved Date: &nbsp; {{ (approval.NSM_APP_DATE!=='0001-01-01T00:00:00')?(approval.NSM_APP_DATE| date:'dd-MM-yyyy'):'' }}
+          </td>
+          <td class="esc-data">
+            NSM Remarks: &nbsp; {{ approval.NSM_REMARKS }}
+          </td>
+        </tr>
+        <tr>
+          <td> </td>
+          <td> </td>
+          <td> </td>
+        </tr>
+        <tr>
+          <td class="esc-data">
+            GMS: &nbsp; {{ approval.GMS }}
+          </td>
+          <td class="esc-data">
+            GMS Approved Date: &nbsp; {{ (approval.GMS_APP_DATE!=='0001-01-01T00:00:00')?(approval.GMS_APP_DATE | date:'dd-MM-yyyy'):''}}
+          </td>
+          <td class="esc-data">
+            GMS Remarks: &nbsp; {{ approval.GMS_REMARKS }}
+          </td>
+        </tr>
+        <tr>
+          <td> </td>
+          <td> </td>
+          <td> </td>
+        </tr>
+        <tr>
+          <td class="esc-data">
+            HO : &nbsp; {{ approval.HO }}
+          </td>
+          <td class="esc-data">
+            HO Approved Date: &nbsp; {{ (approval.HO_APP_DATE!=='0001-01-01T00:00:00')?(approval.HO_APP_DATE | date:'dd-MM-yyyy'):''}}
+          </td>
+          <td class="esc-data">
+            HO Remarks: &nbsp; {{ approval.HO_REMARKS }}
+          </td>
+        </tr>
+      </tbody>
+      <br>
+    </table>
+    <div>
+        <h4 class="custHomeHead">Escalation Details</h4>
+    </div>
+   
+    <table class="esc-table">
+      <tbody *ngFor="let esc of escalationList">
+        <tr>
+          <td class="esc-data">
+            From: &nbsp; {{ esc.FROM_EMPNAME }}
+          </td>
+          <td class="esc-data">
+            To: &nbsp; {{ esc.TO_EMPNAME }}
+          </td>
+          <td class="esc-data">
+            Date & Time: &nbsp;
+            {{ esc.CREATED_ON | date:'dd-MM-yyyy'}}
+          </td>
+        </tr>
+        <tr>
+          <td class="esc-data remarks-sec" colspan="6">
+
+            {{ esc.REMARKS }}
+          </td>
+        </tr>
+      </tbody>
+      <br>
+    </table>
+  </div>
+</div>
+<div class="overlay" *ngIf="popup">
+  <div class="popup">
+      <h2></h2>
+      <a class="close" (click)="popup = false">&times;</a>
+      <p class="msg-sec">Message from TVSM 2W Warranty Section</p>
+      <div class="content">
+        Your request is submitted successfully
+      </div>
+      <div class="text-center ok-btn">
+        <input class="btn btn-primary btn-sm" type="button" (click)="popup = false" value="OK">
+      </div>
+  </div>
+</div>

@@ -1,0 +1,186 @@
+<!-- <nav class="navbar justify-content-between navBg">
+  <a class="navbar-brand"><h5 class="custH5"></h5></a>
+  <img class="float-right" src="..\assets\images\tvslogo.png" alt="Logo" width="100px">
+</nav>
+
+<ul class="nav custMenu" role="tablist">
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle dropbtn active">CREATE REQUEST</a>
+      <div class="nav-item dropdown-content">
+        <a class="nav-link" data-toggle="pill" href="#home">Reapproval Create Request</a>
+      </div>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" data-toggle="pill" href="#Query">Query-Reply</a>
+      </li>
+    <li class="nav-item">
+    <a class="nav-link" data-toggle="pill" href="#menu1">REPORT</a>
+    </li>
+</ul>
+<p class="custSubMenu">Welcome </p>
+<div class="tab-content">
+    <div id="home" class="tab-pane active"><br>
+      <div class="container jumbotron">
+        <h3 class="rep-req-sec">Dealer Name (Dealer Code)</h3>
+        <div class="form-sec">
+          <div class="form-inline">
+            <label for="orderno" class="form-control-sm mb-2 mr-sm-2">Order Number :</label>
+            <input [(ngModel)]="OrderDetails.ORDER_NO" type="text" 
+            class="form-control form-control-sm mb-2 mr-sm-2" 
+            placeholder="Enter the order number" 
+            name="orderno">
+            <button (click)="getSAPOrderDetails()" type="button" class="btn btn-primary mb-2 form-control-sm">Submit</button>
+          </div>
+          <p></p>
+          <div class="jumbotron jumbo2">
+            <form (ngSubmit)="saveorderDetails()">
+              <div class="form-row" style="margin-bottom: 15px;">
+                <div class="form-group col-md-3">
+                  <label for="claimsettleddate" class="form-control-sm mb-2 mr-sm-2">Claim Settled Date</label>
+                  <input [(ngModel)]="OrderDetails.CLAIM_SETTLED_DATE" 
+                   type="date" 
+                   class="form-control form-control-sm mb-2 mr-sm-2" 
+                  name="claimsettleddate" 
+                  placeholder="Claim Settled Date" disabled>
+                </div>
+                <div class="form-group col-md-3">
+                  <label for="daysleft" class="form-control-sm mb-2 mr-sm-2">Days left for Reclaiming</label>
+                  <input [(ngModel)]="OrderDetails.DAYS_LEFT_FOR_RECLAIMING" [disabled] = "isDisabled" 
+                  type="text" class="form-control form-control-sm mb-2 mr-sm-2" 
+                  name="daysleft" placeholder="Days left for Reasoning">
+                </div>
+                <div class="form-group col-md-3">
+                  <label for="frameno" class="form-control-sm mb-2 mr-sm-2">Frame Number</label>
+                  <input [(ngModel)]="OrderDetails.FRAME_NUMBER" 
+                  (change)="validateFrameNo($event)" 
+                  [disabled] = "isDisabled" type="text" 
+                  class="form-control form-control-sm mb-2 mr-sm-2" 
+                  name="frameno" placeholder="Frame Number">
+                </div>
+                <div class="form-group col-md-3">
+                  <label for="partno" class="form-control-sm mb-2 mr-sm-2">Part Number</label>
+                  <input [(ngModel)]="OrderDetails.PART_NUMBER" (change)="validatePartNo($event)"
+                   [disabled] = "isDisabled" type="text" 
+                   class="form-control form-control-sm mb-2 mr-sm-2" name="partno" placeholder="Part Number">
+                </div>
+              </div>
+              <div class="form-row" style="margin-bottom: 15px;">
+                <div class="form-group col-md-3">
+                  <label for="partdesc" class="form-control-sm mb-2 mr-sm-2">Part Description</label>
+                  <input [(ngModel)]="OrderDetails.PART_DESCRIPTION" 
+                   disabled type="text" class="form-control form-control-sm mb-2 mr-sm-2" name="partdesc" placeholder="Part Description">
+                </div>
+                <div class="form-group col-md-3">
+                  <label for="kms" class="form-control-sm mb-2 mr-sm-2">Kms</label>
+                  <input [(ngModel)]="OrderDetails.KMS" (change)="validate($event, 'KMS')" [disabled] = "isDisabled" 
+                  type="text" class="form-control form-control-sm mb-2 mr-sm-2" name="kms" placeholder="Kms">
+                </div>
+                <div class="form-group col-md-3">
+                  <label for="salesdate" class="form-control-sm mb-2 mr-sm-2">Sales Date</label>
+                  <input [(ngModel)]="OrderDetails.SALES_DATE" 
+                  (change)="validate($event, 'SALES_DATE')" 
+                  [disabled] = "isDisabled" type="date" class="form-control form-control-sm mb-2 mr-sm-2" 
+                  name="salesdate" placeholder="Sales Date">
+                </div>
+                <div class="form-group col-md-3">
+                  <label for="repairdate" class="form-control-sm mb-2 mr-sm-2">Repair Date</label>
+                  <input [(ngModel)]="OrderDetails.REPAIR_DATE" (change)="validate($event, 'REPAIR_DATE')" 
+                  [disabled] = "isDisabled" type="date" class="form-control form-control-sm mb-2 mr-sm-2" 
+                  name="repairdate" placeholder="Repair date">
+                </div>
+              </div>
+              <div class="form-row" style="margin-bottom: 15px;">
+                <div class="form-group col-md-3">
+                  <label for="model" class="form-control-sm mb-2 mr-sm-2">Model</label>
+                  <input [(ngModel)]="OrderDetails.MODEL" 
+                  
+                  disabled type="text" class="form-control form-control-sm mb-2 mr-sm-2" name="model" placeholder="Model">
+                </div>
+                <div class="form-group col-md-3">
+                  <label for="ndprate" class="form-control-sm mb-2 mr-sm-2">NDP Rate</label>
+                  <input [(ngModel)]="OrderDetails.NDP_RATE" 
+                  
+                  disabled type="text" class="form-control form-control-sm mb-2 mr-sm-2" name="ndprate" placeholder="NDP Rate">
+                </div>
+                <div class="form-group col-md-3">
+                  <label for="dealercode" class="form-control-sm mb-2 mr-sm-2">Dealer Code</label>
+                  <input [(ngModel)]="OrderDetails.DEALER_CODE" (change)="validate($event, 'DEALER_CODE')" 
+                  [disabled] = "isDisabled" type="text" class="form-control form-control-sm mb-2 mr-sm-2"
+                   name="dealercode" placeholder="Dealer Code">
+                </div>
+                <div class="form-group col-md-3">
+                  <label for="dealername" class="form-control-sm mb-2 mr-sm-2">Dealer Name</label>
+                  <input [(ngModel)]="OrderDetails.DEALER_NAME" (change)="validate($event, 'DEALER_NAME')" 
+                  [disabled] = "isDisabled" type="text" class="form-control form-control-sm mb-2 mr-sm-2" 
+                  name="dealername" placeholder="Dealer Name">
+                </div>
+              </div>
+              <div class="form-row" style="margin-bottom: 15px;">
+                <div class="form-group col-md-3">
+                  <label for="reasonforrejection" class="form-control-sm mb-2 mr-sm-2">Reason for Rejection</label>
+                  <textarea [(ngModel)]="OrderDetails.REASON_FOR_REJECTION" 
+                 
+                   disabled name="reasonforrejection" class="form-control form-control-sm mb-2 mr-sm-2" cols="30" rows="3"></textarea>
+                </div>
+                <div class="form-group col-md-3">
+                  <label for="justification" class="form-control-sm mb-2 mr-sm-2">Justification</label>
+                  <textarea [(ngModel)]="OrderDetails.JUSTIFICATION" [disabled] = "isDisabled" 
+                  name="justification" class="form-control form-control-sm mb-2 mr-sm-2" cols="30" rows="3"></textarea>
+                </div>
+                <div class="form-group col-md-3">
+                  <label for="city" class="form-control-sm mb-2 mr-sm-2">City</label>
+                  <input [(ngModel)]="OrderDetails.CITY" [disabled] = "isDisabled" type="text" 
+                  class="form-control form-control-sm mb-2 mr-sm-2" name="city" placeholder="City">
+                </div>
+                <div class="form-group col-md-3">
+                  <label for="uploaddocs" class="form-control-sm mb-2 mr-sm-2">Upload Documents</label>
+                  <input [disabled] = "isDisabled" type="file" #UploadFileInput (change)="uploadFile($event)" 
+                  class="form-control-file form-control-sm" name="uploaddocs">
+                </div>
+                <div class="form-group col-md-3">
+                  <label for="tmdrpdwn" class="form-control-sm mb-2 mr-sm-2">Forward to TM Service</label>
+                  <select [(ngModel)]="OrderDetails.TM" (change)="selectTm($event)" 
+                  [disabled] = "isDisabled" class="form-control form-control-sm mb-2 mr-sm-2" 
+                  name="tmdrpdwn" id="">
+                    <option value="">Select</option>
+                    <option *ngFor="let tm of tmList" [value]="tm.empno">{{ tm.empname }}</option>
+                  </select>
+                </div>
+                <div class="form-group col-md-3">
+                  <br>
+                  <input [disabled] = "isDisabled"
+                   type="submit" value="Send Request" class="btn btn-primary mb-2 form-control-sm" 
+                   id="subbtn">
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="menu1" class="tab-pane fade"><br>
+      <app-dealer-report></app-dealer-report>
+    </div>
+    <div id="Query" class="tab-pane fade"><br>
+     
+      <app-dealer-query></app-dealer-query>
+    </div>
+    <div id="menu2" class="container tab-pane fade"><br>
+      <h3>Query</h3>
+      <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
+    </div>
+</div>
+
+<div class="overlay" *ngIf="popup">
+  <div class="popup">
+      <h2></h2>
+      <a class="close" (click)="popup = false">&times;</a>
+      <p class="msg-sec">Message from TVSM 2W Warranty Section</p>
+      <div class="content">
+        {{ popupMsg }}
+      </div>
+      <div class="text-center ok-btn">
+        <input class="btn btn-primary btn-sm" type="button" (click)="popup = false" value="OK">
+      </div>
+  </div>
+</div> -->

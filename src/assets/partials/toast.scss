@@ -1,0 +1,41 @@
+//Toast Class
+.toast-container .toast {
+    padding: 15px 50px !important;
+    border-radius: 5px !important;
+    color: #ffffff !important;
+    font-family: var(--fontName);
+    font-size: 13px !important;
+    font-weight: 400 !important;
+    min-width: 250px;
+    width: auto !important;
+    margin: 0 !important;
+    box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
+  }
+  .toast-title{
+    font-weight: 500 !important;
+  }
+  .toast-error {
+    background-color: #db4437;
+  }
+  
+  .toast-success {
+    background-color: #008642;
+  }
+  
+  .toast-info {
+    background-color: #2677ad;
+  }
+  
+  #toast-container>.toast-error {
+   background-image: url(assets/icons/warning.png) !important;
+   
+  }
+  
+  #toast-container>.toast-success {
+   background-image: url(assets/icons/sucess.png) !important;
+   
+  }
+  
+  #toast-container>.toast-info {
+    background-image: url(assets/icons/calendar.png) !important;
+  }

@@ -1,0 +1,48 @@
+.fileterMenu {
+    width: 220px !important;
+    border-radius: 10px !important;
+    position: absolute !important;
+    top: 50px !important;
+    left: -90px !important;
+
+    .mat-menu-item {
+        font-weight: 600;
+        font-size: 13px;
+        color: #000000;
+        font-family: var(--fontName);
+    }
+}
+
+.datePickerMenu {
+    width: 200px !important;
+    border-radius: 10px !important;
+    position: absolute !important;
+    top: 50px !important;
+    left: -72px !important;
+
+    .mat-menu-item {
+        font-weight: 600;
+        font-size: 13px;
+        color: #000000;
+        font-family: var(--fontName);
+    }
+}
+
+@media (min-width: 300px) and (max-width: 768px) {
+
+    .datePickerMenu,
+    .fileterMenu {
+        left: auto !important;
+        top: 0px !important;
+    }
+
+    p-calender {
+        .ui-datepicker {
+            left: -80px
+        }
+    }
+
+    :host ::ng-deep p-calendar.jc-list input[type=text] {
+        height: 30px !important;
+    }
+}

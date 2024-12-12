@@ -1,0 +1,120 @@
+
+.redrow
+{
+  height: 18px;
+  color: White;
+  font-weight: bold;
+  font-size: 11px;
+  background-color: #EA5607;
+  bottom: 10px;
+}
+
+
+.custApprovalHead {
+    color: #fff;
+    background-color: #337ab7;
+    border-color: #337ab7;
+    padding: 10px 15px;
+    font-family: Tahoma,Arial,Verdana;
+    font-size: 17px;
+}
+.navBg {
+    background-color: #143E67;
+    font-family: Tahoma,Arial,Verdana;
+}
+
+ 
+  
+   
+  
+  
+
+nav a h5{
+    font-family: Calibri, Century Gothic , Trebuchet MS;
+    font-size: 14pt;
+    color: #FFFFFF;
+    font-weight: 700;
+    font-style: italic;
+}
+
+.custMenu {
+    background-color: #EA5607;
+    font-family: Tahoma,Arial,Verdana;
+    color: White;
+    font-weight: bold;
+    font-size: 11px;
+}
+
+.custNavMenu {
+    margin-top: -16px;
+    background-image: linear-gradient(to top, #d6d5d4, #fff);
+    /* background-color: #d6d5d4; */
+    border-style: solid;
+    border-color: #e3e2e2 #e3e2e2 #fff;
+    font-family: Tahoma,Arial,Verdana;
+    font-size: 12px;
+    color: #555;
+}
+
+.custHomeHead {
+    color: #31708f;
+    background-color: #d9edf7;
+    border-color: #bce8f1;
+    padding: 10px 15px;
+    font-family: Tahoma,Arial,Verdana;
+    font-size: 12px;
+}
+
+#home ul li {
+    font-family: Arial;
+    font-size: 12px;
+    color: #337ab7;
+}
+
+.dropbtn {
+    color: white;
+    border: none;
+  }
+  
+  .dropdown {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 200px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+  
+  .dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  }
+  
+  .dropdown-content a:hover {background-image: linear-gradient(to top, #1f879c, #319bb0); color: #fff;}
+  
+  .dropdown:hover .dropdown-content {display: block;}
+  
+  .dropdown:hover .dropbtn {background-color: #fff;}
+
+.nav-link {
+    color: black;
+}
+
+.custH5 {
+    color: cornsilk;
+}
+
+.jumbotron {
+    padding: 10px;
+}
+
+.tableCust {
+    background-color: #fff;
+}

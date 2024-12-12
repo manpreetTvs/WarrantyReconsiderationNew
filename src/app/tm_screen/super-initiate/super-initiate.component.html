@@ -1,0 +1,116 @@
+<div>
+    <h4 class="custApprovalHead">Super Approval</h4>
+    <div class="tableHeight">
+        <table class="table table-bordered table-sm custTable">
+          <thead>
+            <tr>
+              <th>Dealer Code</th>
+              <th>Dealer Name</th>
+              <th>Town</th>
+              <th>Order No</th>
+              <th>Claim Settled Date</th>
+              <th>Total Number of Parts taken for special Approval</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <div class="form-group">
+                  <input [(ngModel)]="SuperApproval.DEALER_CODE" type="text" 
+                  class="form-control form-control-sm mb-2 mr-sm-2" type="number"
+                  name="dealercode" placeholder="Dealer Code" 
+                  (change)="mappingList(SuperApproval.DEALER_CODE)">  
+                </div>
+              </td>
+              <td>
+                <div class="form-group">
+                  <input [(ngModel)]="SuperApproval.DEALER_NAME" 
+                  type="text" class="form-control form-control-sm mb-2 mr-sm-2" 
+                  name="dealername" placeholder="Dealer Name">
+                </div>
+              </td>
+              <td>
+                <div class="form-group">
+                  <input [(ngModel)]="SuperApproval.TOWN" 
+                  type="text" class="form-control form-control-sm mb-2 mr-sm-2" name="town" 
+                  placeholder="Town">
+                </div>
+              </td>
+              <td>
+                <div class="form-group">
+                  <input [(ngModel)]="SuperApproval.ORDER_NO" type="text" class="form-control form-control-sm mb-2 mr-sm-2" name="orderno" placeholder="Order No">
+                </div>
+              </td>
+              <td>
+                <div class="form-group">
+                  <input [(ngModel)]="SuperApproval.CLAIM_SETTLED_DATE" 
+                  type="date" class="form-control form-control-sm mb-2 mr-sm-2" 
+                  name="claimsettleddate">
+                </div>
+              </td>
+              <td>
+                <div class="form-group">
+                  <input [(ngModel)]="SuperApproval.TOTAL_PARTS" 
+                  type="text" class="form-control form-control-sm mb-2 mr-sm-2" n
+                  ame="totalparts" placeholder="Total Parts" type="number">
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="row upload-sec">
+          <div class="form-group">
+            <label for="upload1" class="form-control-sm mb-2 mr-sm-2">Request letter from Dealer to TM/ASM</label>
+            <input type="file" #UploadFileInput (change)="uploadFile($event)" 
+            class="form-control-file form-control-sm" accept="image/*"
+            name="upload1">
+          </div>
+          <div class="form-group">
+            <label for="upload2" class="form-control-sm mb-2 mr-sm-2">Request letter from ASM to VP Service</label>
+            <input type="file" #UploadFileInput (change)="uploadFile1($event)" 
+            class="form-control-file form-control-sm" name="upload2" accept=
+            "application/msword, application/vnd.ms-excel, application/vnd.ms-powerpoint,
+            text/plain, application/pdf, image/*" >
+          </div>
+        </div>
+      </div>
+      <!-- <div>
+        <h4 class="custHomeHead">Approve</h4>
+      </div> -->
+      <div class="row form-row">
+        <div class="form-group col-md-3">
+          <label for="remarks" class="form-control-sm mb-2 mr-sm-2 approve-sec">Remarks</label>
+          <textarea [(ngModel)]="SuperApproval.ASM_REMARKS" name="remarks" 
+          class="form-control form-control-sm mb-2 mr-sm-2" cols="30" rows="3"></textarea>
+        </div>&nbsp;&nbsp;&nbsp;
+        <!-- <div class="form-check form-group col-md-3">
+          <br><br>
+          <input type="checkbox" class="form-check-input" id="splhigh">
+          <label class="form-check-label approve-sec" for="splhigh">Special Hightlight</label>
+        </div> -->
+        <div class="form-group col-md-3">
+          <label for="queryto" class="form-control-sm mb-2 mr-sm-2 approve-sec">Forward To NSM:</label>
+          <select [(ngModel)]="SuperApproval.NSM" (change)="selectNsm($event)" 
+          class="form-control form-control-sm mb-2 mr-sm-2" name="queryto" id="">
+            <option *ngFor="let nsm of nsmList" [value]="nsm.empno">{{ nsm.empname }}</option>
+          </select>
+        </div>
+        <div class="form-group query-btn">
+          <input type="submit" value="Approve" class="btn btn-outline-secondary mb-2 form-control-sm" 
+          (click)="approveRequest()" id="subbtn">
+        </div>
+      </div>
+</div>
+<div class="overlay" *ngIf="popup">
+  <div class="popup">
+      <h2></h2>
+      <a class="close" (click)="popup = false">&times;</a>
+      <p class="msg-sec">Message from TVSM 2W Warranty Section</p>
+      <div class="content">
+        Your request is submitted successfully
+      </div>
+      <div class="text-center ok-btn">
+        <input class="btn btn-primary btn-sm" type="button" (click)="popup = false" value="OK">
+      </div>
+  </div>
+</div>

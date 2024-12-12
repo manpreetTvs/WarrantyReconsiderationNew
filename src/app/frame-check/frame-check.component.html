@@ -1,0 +1,359 @@
+<!-- 
+<h4 class="custApprovalHead">Vehicle Service History</h4>
+
+<main style="background-color: #f4f4f4;">
+  <header>
+    <div class="row">
+      <div class="filter-date col-lg-4 col-sm-4 col-xs-12 pl-0">
+        <div class="search-btn row">
+          <button class="btn btn-default col-lg-6 col-md-6 col-sm-4 col-xs-6 dropdown-btn">
+            <span>Frame No</span>
+          </button>
+          <form class="search-box" name="form">
+            <div class="input-group col-lg-6 col-xs-6">
+              <input type="text"   placeholder="Search"
+                style="border-radius: 8px !important" name="frameNo" [(ngModel)]="frameNo">
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="col-lg-4 col-sm-4 col-xs-12">
+        <button class="searchSelectBtn  flex align-center" type="button" (click)="getVehicleServiceHistory()">
+          <span style="padding:5px">Search</span>
+        </button>
+       
+      </div>
+    </div>
+    
+   
+    
+  </header>
+  <section class="plr-14">
+    <tabset type="pills">
+      <tab heading="Job card Info"  *ngIf="jcRows.length>=0">
+
+        <ngx-datatable class='material' [rows]="jcRows | filterBy: inlineFilter" 
+        [columnMode]="'force'" [headerHeight]="75"
+        [rowHeight]="43" [scrollbarH]="true" [footerHeight]="30" [limit]="10" 
+        [sorts]="jcCols" [columns]="jcCols"> 
+         
+          <ngx-datatable-column prop="DEALER_ID">
+            <ng-template let-column="column" ngx-datatable-header-template let-sort="sortFn" let-sortDir="sortDir">
+              <app-filter-input name="DEALER ID" [modelVal]="inlineFilter.DEALER_ID" [sortType]="sortDir"
+                (sortEvent)="sort()" (changeEvent)="filterByName($event,'DEALER_ID')">
+              </app-filter-input>
+            </ng-template>
+            <span>{{DEALER_ID}}</span>
+          </ngx-datatable-column>
+
+          <ngx-datatable-column prop="DEALERSHIP_NAME">
+            <ng-template let-column="column" ngx-datatable-header-template let-sort="sortFn" let-sortDir="sortDir">
+              <app-filter-input name="DEALERSHIP NAME" [modelVal]="inlineFilter.DEALERSHIP_NAME"
+                [sortType]="sortDir" (sortEvent)="sort()" (changeEvent)="filterByName($event,'DEALERSHIP_NAME')">
+              </app-filter-input>
+            </ng-template>
+            <span>{{DEALERSHIP_NAME}}</span>
+          </ngx-datatable-column>
+
+          <ngx-datatable-column prop="CITY">
+            <ng-template let-column="column" ngx-datatable-header-template let-sort="sortFn" let-sortDir="sortDir">
+              <app-filter-input name="CITY NAME" [modelVal]="inlineFilter.CITY" [sortType]="sortDir"
+                (sortEvent)="sort()" (changeEvent)="filterByName($event,'CITY')">
+              </app-filter-input>
+            </ng-template>
+            <span>{{CITY}}</span>
+          </ngx-datatable-column>
+
+          <ngx-datatable-column prop="JOB_TYPE_DESC">
+            <ng-template let-column="column" ngx-datatable-header-template let-sort="sortFn" let-sortDir="sortDir">
+              <app-filter-input name="JOB TYPE" [modelVal]="inlineFilter.JOB_TYPE_DESC"
+                [sortType]="sortDir" (sortEvent)="sort()" (changeEvent)="filterByName($event,'JOB_TYPE_DESC')">
+              </app-filter-input>
+            </ng-template>
+            <span>{{JOB_TYPE_DESC}}</span>
+          </ngx-datatable-column>
+
+          <ngx-datatable-column prop="JOB_CARD_NO">
+            <ng-template let-column="column" ngx-datatable-header-template let-sort="sortFn" let-sortDir="sortDir">
+              <app-filter-input name="JOB CARD NO" [modelVal]="inlineFilter.JOB_CARD_NO" [sortType]="sortDir"
+                (sortEvent)="sort()" (changeEvent)="filterByName($event,'JOB_CARD_NO')">
+              </app-filter-input>
+            </ng-template>
+            <span>{{JOB_CARD_NO}}</span>
+          </ngx-datatable-column>
+
+          <ngx-datatable-column prop="JOB_CARD_DATE">
+            <ng-template let-column="column" ngx-datatable-header-template let-sort="sortFn" let-sortDir="sortDir">
+              <app-filter-date name="JOB CARD DATE" [modelVal]="inlineFilter.JOB_CARD_DATE | momentFilterDate"
+                [sortType]="sortDir" (sortEvent)="sort()" (changeEvent)="filterByName($event,'JOB_CARD_DATE')">
+              </app-filter-date>
+            </ng-template>
+            <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="JOB_CARD_DATE" let-row="row">
+              <span>{{row.JOB_CARD_DATE | momentDate}}</span>
+            </ng-template>
+          </ngx-datatable-column>
+
+          <ngx-datatable-column prop="FRAME_NO" [width]="200">
+            <ng-template let-column="column" ngx-datatable-header-template let-sort="sortFn" let-sortDir="sortDir">
+              <app-filter-input name="FRAME NO" [modelVal]="inlineFilter.FRAME_NO" [sortType]="sortDir"
+                (sortEvent)="sort()" (changeEvent)="filterByName($event,'FRAME_NO')">
+              </app-filter-input>
+            </ng-template>
+            <span>{{FRAME_NO}}</span>
+          </ngx-datatable-column>
+
+          <ngx-datatable-column prop="CUST_NAME">
+            <ng-template let-column="column" ngx-datatable-header-template let-sort="sortFn" let-sortDir="sortDir">
+              <app-filter-input name="CUSTOMER NAME" [modelVal]="inlineFilter.CUST_NAME"
+                [sortType]="sortDir" (sortEvent)="sort()" (changeEvent)="filterByName($event,'CUST_NAME')">
+              </app-filter-input>
+            </ng-template>
+            <span></span>
+            <span>{{CUST_NAME}}</span>
+          </ngx-datatable-column>
+
+          <ngx-datatable-column prop="SERVICEMODE">
+            <ng-template let-column="column" ngx-datatable-header-template let-sort="sortFn" let-sortDir="sortDir">
+              <app-filter-input name="SERVICE MODE" [modelVal]="inlineFilter.SERVICEMODE" [sortType]="sortDir"
+                (sortEvent)="sort()" (changeEvent)="filterByName($event,'SERVICEMODE')">
+              </app-filter-input>
+            </ng-template>
+            <span>{{SERVICEMODE}}</span>
+          </ngx-datatable-column>
+
+          <ngx-datatable-column prop="KILOMETERS">
+            <ng-template let-column="column" ngx-datatable-header-template let-sort="sortFn" let-sortDir="sortDir">
+              <app-filter-input name="KMS RUN" [modelVal]="inlineFilter.KILOMETERS" [sortType]="sortDir"
+                (sortEvent)="sort()" (changeEvent)="filterByName($event,'KILOMETERS')">
+              </app-filter-input>
+            </ng-template>
+            <span>{{KILOMETERS}}</span>
+          </ngx-datatable-column>
+
+          <ngx-datatable-column prop="MODEL">
+            <ng-template let-column="column" ngx-datatable-header-template let-sort="sortFn" let-sortDir="sortDir">
+              <app-filter-input name="MODEL" [modelVal]="inlineFilter.MODEL" [sortType]="sortDir"
+                (sortEvent)="sort()" (changeEvent)="filterByName($event,'MODEL')">
+              </app-filter-input>
+            </ng-template>
+            <span>{{MODEL}}</span>
+          </ngx-datatable-column>
+
+          <ngx-datatable-column prop="MODEL_PART">
+            <ng-template let-column="column" ngx-datatable-header-template let-sort="sortFn" let-sortDir="sortDir">
+              <app-filter-input name="MODEL PART" [modelVal]="inlineFilter.MODEL_PART" [sortType]="sortDir"
+                (sortEvent)="sort()" (changeEvent)="filterByName($event,'MODEL_PART')">
+              </app-filter-input>
+            </ng-template>
+            <span>{{MODEL_PART}}</span>
+          </ngx-datatable-column>
+
+          <ngx-datatable-column prop="PSF_RATING">
+            <ng-template let-column="column" ngx-datatable-header-template let-sort="sortFn" let-sortDir="sortDir">
+              <app-filter-input name="PSF RATING" [modelVal]="inlineFilter.PSF_RATING" [sortType]="sortDir"
+                (sortEvent)="sort()" (changeEvent)="filterByName($event,'PSF_RATING')">
+              </app-filter-input>
+            </ng-template>
+            <span>{{PSF_RATING}}</span>
+          </ngx-datatable-column>
+
+          <ngx-datatable-column prop="SATISFIED">
+            <ng-template let-column="column" ngx-datatable-header-template let-sort="sortFn" let-sortDir="sortDir">
+              <app-filter-input name="SATISFIED/DISSATISFIED" [modelVal]="inlineFilter.SATISFIED" [sortType]="sortDir"
+                (sortEvent)="sort()" (changeEvent)="filterByName($event,'SATISFIED')">
+              </app-filter-input>
+            </ng-template>
+            <span>{{SATISFIED}}</span>
+          </ngx-datatable-column>
+
+          <ngx-datatable-column prop="REMARKS">
+            <ng-template let-column="column" ngx-datatable-header-template let-sort="sortFn" let-sortDir="sortDir">
+              <app-filter-input name="REMARKS" [modelVal]="inlineFilter.REMARKS" [sortType]="sortDir"
+                (sortEvent)="sort()" (changeEvent)="filterByName($event,'REMARKS')">
+              </app-filter-input>
+            </ng-template>
+            <span>{{REMARKS}}</span>
+          </ngx-datatable-column>
+        </ngx-datatable>
+
+      </tab>
+
+      <tab heading="Complaints Info" *ngIf="complaintsRows.length>=0">
+        <ngx-datatable class='material' [rows]="complaintsRows" [columns]="complaintsCols"
+          [columnMode]="'force'" [headerHeight]="75" [rowHeight]="43" [scrollbarH]="true" [footerHeight]="30" [limit]="10"
+          [sorts]="complaintsCols">
+          <ngx-datatable-column prop="DEALER_ID">
+            <ng-template let-column="column" ngx-datatable-header-template let-sort="sortFn" let-sortDir="sortDir">
+              <app-filter-input name="DEALER ID" [modelVal]="complaintsFilter.DEALER_ID" [sortType]="sortDir"
+                (sortEvent)="sort()" (changeEvent)="filterByName($event,'DEALER_ID')">
+              </app-filter-input>
+            </ng-template>
+            <span>{{DEALER_ID}}</span>
+          </ngx-datatable-column>
+          <ngx-datatable-column prop="JOB_TYPE_DESC">
+            <ng-template let-column="column" ngx-datatable-header-template let-sort="sortFn" let-sortDir="sortDir">
+              <app-filter-input name="JOB TYPE" [modelVal]="complaintsFilter.JOB_TYPE_DESC"
+                [sortType]="sortDir" (sortEvent)="sort()" (changeEvent)="filterByName($event,'JOB_TYPE_DESC')">
+              </app-filter-input>
+            </ng-template>
+            <span>{{JOB_TYPE_DESC}}</span>
+          </ngx-datatable-column>
+          <ngx-datatable-column prop="JOB_CARD_NO">
+            <ng-template let-column="column" ngx-datatable-header-template let-sort="sortFn" let-sortDir="sortDir">
+              <app-filter-input name="JOB CARD NO" [modelVal]="complaintsFilter.JOB_CARD_NO"
+                [sortType]="sortDir" (sortEvent)="sort()" (changeEvent)="filterByName($event,'JOB_CARD_NO')">
+              </app-filter-input>
+            </ng-template>
+            <span>{{JOB_CARD_NO}}</span>
+          </ngx-datatable-column>
+          <ngx-datatable-column prop="JOB_CARD_DATE">
+            <ng-template let-column="column" ngx-datatable-header-template let-sort="sortFn" let-sortDir="sortDir">
+              <app-filter-date name="JOB CARD DATE" [modelVal]="complaintsFilter.JOB_CARD_DATE | momentFilterDate"
+                [sortType]="sortDir" (sortEvent)="sort()" (changeEvent)="filterByName($event,'JOB_CARD_DATE')">
+              </app-filter-date>
+            </ng-template>
+            <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="JOB_CARD_DATE" let-row="row">
+              <span>{{row.JOB_CARD_DATE | momentDate}}</span>
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column prop="FRAME_NO" [width]="200">
+            <ng-template let-column="column" ngx-datatable-header-template let-sort="sortFn" let-sortDir="sortDir">
+              <app-filter-input name="FRAME NO" [modelVal]="complaintsFilter.FRAME_NO" [sortType]="sortDir"
+                (sortEvent)="sort()" (changeEvent)="filterByName($event,'FRAME_NO')">
+              </app-filter-input>
+            </ng-template>
+            <span>{{FRAME_NO}}</span>
+          </ngx-datatable-column>
+          <ngx-datatable-column prop="Observation">
+            <ng-template let-column="column" ngx-datatable-header-template let-sort="sortFn" let-sortDir="sortDir">
+              <app-filter-input name="OBSERVATION" [modelVal]="complaintsFilter.Observation"
+                [sortType]="sortDir" (sortEvent)="sort()" (changeEvent)="filterByName($event,'Observation')">
+              </app-filter-input>
+            </ng-template>
+            <span>{{Observation}}</span>
+          </ngx-datatable-column>
+          <ngx-datatable-column prop="Cust_Voice">
+            <ng-template let-column="column" ngx-datatable-header-template let-sort="sortFn" let-sortDir="sortDir">
+              <app-filter-input name="CUSTOMER VOICE" [modelVal]="complaintsFilter.Cust_Voice"
+                [sortType]="sortDir" (sortEvent)="sort()" (changeEvent)="filterByName($event,'Cust_Voice')">
+              </app-filter-input>
+            </ng-template>
+            <span>{{Cust_Voice}}</span>
+          </ngx-datatable-column>
+          <ngx-datatable-column prop="Complaint_Group">
+            <ng-template let-column="column" ngx-datatable-header-template let-sort="sortFn" let-sortDir="sortDir">
+              <app-filter-input name="COMPLAINT GROUP" [modelVal]="complaintsFilter.Complaint_Group"
+                [sortType]="sortDir" (sortEvent)="sort()" (changeEvent)="filterByName($event,'Complaint_Group')">
+              </app-filter-input>
+            </ng-template>
+            <span>{{Complaint_Group}}</span>
+          </ngx-datatable-column>
+          <ngx-datatable-column prop="Complaint">
+            <ng-template let-column="column" ngx-datatable-header-template let-sort="sortFn" let-sortDir="sortDir">
+              <app-filter-input name="COMPLAINTS" [modelVal]="complaintsFilter.Complaint"
+                [sortType]="sortDir" (sortEvent)="sort()" (changeEvent)="filterByName($event,'Complaint')">
+              </app-filter-input>
+            </ng-template>
+            <span>{{Complaint}}</span>
+          </ngx-datatable-column>
+        </ngx-datatable>
+      </tab>
+      <tab heading="Parts issued Info" *ngIf="partIssueRows.length>=0">
+        <ngx-datatable class='material' [rows]="partIssueRows" [columnMode]="'force'"
+          [headerHeight]="75" [rowHeight]="43" [scrollbarH]="true" [footerHeight]="30" [limit]="10" [sorts]="partIssueCols">
+          <ngx-datatable-column prop="DEALER_ID">
+            <ng-template let-column="column" ngx-datatable-header-template let-sort="sortFn" let-sortDir="sortDir">
+              <app-filter-input name="DEALER ID" [modelVal]="partIssueFilter.DEALER_ID" [sortType]="sortDir"
+                (sortEvent)="sort()" (changeEvent)="filterByName($event,'DEALER_ID')">
+              </app-filter-input>
+            </ng-template>
+            <span>{{DEALER_ID}}</span>
+          </ngx-datatable-column>
+          <ngx-datatable-column prop="DEALERSHIP_NAME">
+            <ng-template let-column="column" ngx-datatable-header-template let-sort="sortFn" let-sortDir="sortDir">
+              <app-filter-input name="DEALERSHIP NAME" [modelVal]="partIssueFilter.DEALERSHIP_NAME"
+                [sortType]="sortDir" (sortEvent)="sort()" (changeEvent)="filterByName($event,'DEALERSHIP_NAME')">
+              </app-filter-input>
+            </ng-template>
+            <span>{{DEALERSHIP_NAME}}</span>
+          </ngx-datatable-column>
+          <ngx-datatable-column prop="CITY">
+            <ng-template let-column="column" ngx-datatable-header-template let-sort="sortFn" let-sortDir="sortDir">
+              <app-filter-input name="CITY NAME" [modelVal]="partIssueFilter.CITY" [sortType]="sortDir"
+                (sortEvent)="sort()" (changeEvent)="filterByName($event,'CITY')">
+              </app-filter-input>
+            </ng-template>
+            <span>{{CITY}}</span>
+          </ngx-datatable-column>
+          <ngx-datatable-column prop="JOB_TYPE_DESC">
+            <ng-template let-column="column" ngx-datatable-header-template let-sort="sortFn" let-sortDir="sortDir">
+              <app-filter-input name="JOB TYPE" [modelVal]="partIssueFilter.JOB_TYPE_DESC"
+                [sortType]="sortDir" (sortEvent)="sort()" (changeEvent)="filterByName($event,'JOB_TYPE_DESC')">
+              </app-filter-input>
+            </ng-template>
+            <span>{{JOB_TYPE_DESC}}</span>
+          </ngx-datatable-column>
+          <ngx-datatable-column prop="JOB_CARD_NO">
+            <ng-template let-column="column" ngx-datatable-header-template let-sort="sortFn" let-sortDir="sortDir">
+              <app-filter-input name="JOB CARD NO" [modelVal]="partIssueFilter.JOB_CARD_NO"
+                [sortType]="sortDir" (sortEvent)="sort()" (changeEvent)="filterByName($event,'JOB_CARD_NO')">
+              </app-filter-input>
+            </ng-template>
+            <span>{{JOB_CARD_NO}}</span>
+          </ngx-datatable-column>
+          <ngx-datatable-column prop="JOB_CARD_DATE">
+            <ng-template let-column="column" ngx-datatable-header-template let-sort="sortFn" let-sortDir="sortDir">
+              <app-filter-date name="JOB CARD DATE" [modelVal]="partIssueFilter.JOB_CARD_DATE | momentFilterDate"
+                [sortType]="sortDir" (sortEvent)="sort()" (changeEvent)="filterByName($event,'JOB_CARD_DATE')">
+              </app-filter-date>
+            </ng-template>
+            <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="JOB_CARD_DATE" let-row="row">
+              <span>{{row.JOB_CARD_DATE | momentDate}}</span>
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column prop="FRAME_NO" [width]="200">
+            <ng-template let-column="column" ngx-datatable-header-template let-sort="sortFn" let-sortDir="sortDir">
+              <app-filter-input name="FRAME NO" [modelVal]="partIssueFilter.FRAME_NO" [sortType]="sortDir"
+                (sortEvent)="sort()" (changeEvent)="filterByName($event,'FRAME_NO')">
+              </app-filter-input>
+            </ng-template>
+            <span>{{FRAME_NO}}</span>
+          </ngx-datatable-column>
+          <ngx-datatable-column prop="PART_NO">
+            <ng-template let-column="column" ngx-datatable-header-template let-sort="sortFn" let-sortDir="sortDir">
+              <app-filter-input name="PART NO" [modelVal]="partIssueFilter.PART_NO" [sortType]="sortDir"
+                (sortEvent)="sort()" (changeEvent)="filterByName($event,'PART_NO')">
+              </app-filter-input>
+            </ng-template>
+            <span>{{PART_NO}}</span>
+          </ngx-datatable-column>
+          <ngx-datatable-column prop="PART_DESC">
+            <ng-template let-column="column" ngx-datatable-header-template let-sort="sortFn" let-sortDir="sortDir">
+              <app-filter-input name="PART DESCRIPTION" [modelVal]="partIssueFilter.PART_DESC"
+                [sortType]="sortDir" (sortEvent)="sort()" (changeEvent)="filterByName($event,'PART_DESC')">
+              </app-filter-input>
+            </ng-template>
+            <span>{{PART_DESC}}</span>
+          </ngx-datatable-column>
+          <ngx-datatable-column prop="ISSUED_QTY">
+            <ng-template let-column="column" ngx-datatable-header-template let-sort="sortFn" let-sortDir="sortDir">
+              <app-filter-input name="ISSUED QUANTITY" [modelVal]="partIssueFilter.ISSUED_QTY"
+                [sortType]="sortDir" (sortEvent)="sort()" (changeEvent)="filterByName($event,'ISSUED_QTY')">
+              </app-filter-input>
+            </ng-template>
+            <span>{{ISSUED_QTY}}</span>
+          </ngx-datatable-column>
+          <ngx-datatable-column prop="ISSUEMODE">
+            <ng-template let-column="column" ngx-datatable-header-template let-sort="sortFn" let-sortDir="sortDir">
+              <app-filter-input name="ISSUE MODE" [modelVal]="partIssueFilter.ISSUEMODE"
+                [sortType]="sortDir" (sortEvent)="sort()" (changeEvent)="filterByName($event,'ISSUEMODE')">
+              </app-filter-input>
+            </ng-template>
+            <span>{{ISSUEMODE}}</span>
+          </ngx-datatable-column>
+
+        </ngx-datatable>
+      </tab>
+    </tabset>
+  </section>
+</main> -->

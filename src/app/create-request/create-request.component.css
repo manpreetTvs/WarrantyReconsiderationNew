@@ -1,0 +1,193 @@
+.navBg {
+    /* background-color: #4b5b74; */
+    background-image: linear-gradient(to top, #334353, #536580);
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    border-spacing: 2px;
+    height: 44px;
+}
+
+.custMenu {
+    background-color: #334353;
+    border-top: 1px solid;
+    color: #ffffff;
+    height: 25px;
+}
+
+.custMenu .nav-item .nav-link{
+    font-family: Tahoma,Arial;
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: bold;
+    margin-top: -5px
+}
+
+.nav-link {
+    color: black;
+}
+
+.custH5 {
+    font-family: Calibri, Century Gothic , Trebuchet MS;
+    font-size: 14pt;
+    color: #FFFFFF;
+    font-weight: 700;
+}
+
+.jumbotron {
+    padding: 10px;
+}
+
+.jumbo2 {
+    background-color: rgb(214 214 214);
+}
+
+.mb-2, .my-2 {
+    margin-bottom: -0.5rem !important;
+}
+
+.dropbtn {
+    color: white;
+    border: none;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 200px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+  
+  .dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    font-size: 12px;
+    font-weight: bold;
+  }
+  
+  .dropdown-content a:hover {background-image: linear-gradient(to top, #334353, #536580); color: #fff;}
+  
+  .dropdown:hover .dropdown-content {display: block;}
+  
+  .dropdown:hover .dropbtn {background-color: #536580;}
+
+  .custSubMenu {
+    background-image: linear-gradient(to top, #75c0f8, #c4e0f5);
+    font-family: Tahoma,Arial,Verdana;
+    color: White;
+    font-weight: bold;
+    font-size: 11px;
+    height: 18px;
+}
+
+.tab-content {
+    background-image: linear-gradient(to top, #a3c1cc, #334353);
+    margin-top: -16px;
+    margin:10px;
+    padding: 10px;
+}
+
+.jumbotron {
+    background-color: #ffffff;
+}
+
+.rep-req-sec {
+    font-family: Tahoma,Arial,Verdana;
+    text-align: center;
+    line-height: 30px;
+    color: #00508E;
+    font-size: 16px;
+    font-weight: bold;
+    vertical-align: middle;
+}
+
+label {
+    font-size: 12px;
+    font-family: tahoma,Arial;
+}
+
+.form-sec {
+    padding-top: 10px;
+    border: solid 1px #64B1D8;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.7);
+    transition: opacity 500ms;
+    visibility: visible;
+    opacity: 1;
+  }
+  
+  
+  .popup {
+    margin: 70px auto;
+    /* padding: 20px; */
+    background: #fff;
+    border-radius: 5px;
+    width: 30%;
+    position: relative;
+    transition: all 5s ease-in-out;
+  }
+  
+  .popup h2 {
+    margin-top: 0;
+    color: #333;
+    font-family: Tahoma, Arial, sans-serif;
+    background-color: #919aa8;
+    height: 20px;
+  }
+
+  .popup .close {
+    position: absolute;
+    top: -9px;
+    right: 8px;
+    transition: all 200ms;
+    font-size: 30px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #333;
+  }
+  .popup .close:hover {
+    color: #06D85F;
+    cursor: pointer;
+  }
+  .popup .content {
+    /* max-height: 30%; */
+    overflow: auto;
+    text-align: center;
+    font-family: Tahoma, Arial, sans-serif;
+    font-size: 12px;
+  }
+  
+  @media screen and (max-width: 700px){
+  
+    .popup{
+      width: 70%;
+    }
+  }
+
+.msg-sec {
+    margin-top: -8px;
+    background-color: red;
+    font-family: Tahoma, Arial, sans-serif;
+    font-size: 12px;
+    text-align: center;
+    color: #fff;
+    font-weight: bold;
+}
+
+.ok-btn {
+    padding: 10px;
+}

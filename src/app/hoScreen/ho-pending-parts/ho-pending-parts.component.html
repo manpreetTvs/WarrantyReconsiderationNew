@@ -1,0 +1,201 @@
+<!-- <div class="custApprovalBody">
+    <h4 class="custApprovalHead">Rejected Part Approval</h4>
+    <div class="tableHeight">
+      <table class="table table-bordered table-sm custTable">
+        <thead>
+          <tr>
+            <th>Select</th>
+            <th>Dealer Name</th>
+            <th>Dealer Code</th>
+            <th>Town</th>
+            <th>Created On</th>
+            <th>Order No</th>
+            <th>Claim Settled Date</th>
+            <th>Material No</th>
+            <th>Material Description</th>
+            <th>Frame No</th>
+            <th>Pending With</th>
+            <th>Status</th>
+            <th>Pending From</th>
+            <th>Dealer Remarks</th>
+            <th>TM Remarks</th>
+            <th>ASM Remarks</th>
+            <th>Approval Status</th>
+            <th>Query By TVSM</th>
+            <th>Query To</th>
+            <th>Credited Date</th>
+            <th>Update to Dealer</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of hoPendingListData">
+            <td><a role="button" class="selectItem" (click)="fetchReqDetails(item.ID)">Select</a></td>
+            <td>{{item.DEALER_NAME}}</td>
+            <td>{{item.DEALER_CODE}}</td>
+            <td>{{item.CITY}}</td>
+            <td>{{item.CREATED_ON | date:'dd-MM-yyyy'}}</td>
+            <td>{{item.ORDER_NUMBER}}</td>
+            <td>{{item.CLAIM_SETTLED_DATE | date:'dd-MM-yyyy'}}</td>
+            <td>{{item.PART_NUMBER}}</td>
+            <td>{{item.PART_DESCRIPTION}}</td>
+            <td>{{ item.FRAME_NUMBER }}</td>
+            <td>HO</td>
+            <td>{{item.STATUS}}</td>
+            <td>{{ item.CREATED_ON | date:'dd-MM-yyyy'}}</td>
+
+            <td>{{item.JUSTIFICATION}}</td>
+            <td>{{item.TM_REMARKS}}</td>
+            <td>{{item.AM_REMARKS}}</td>
+            <td>
+              <div>
+                <select [(ngModel)]="actionSelected[item.ID]" (change)="selectAction($event, item)" class="form-control form-control-sm mb-2 mr-sm-2" name="actiondrpdwn" id="">
+                  <option value="F">Approve</option>
+                  <option value="Q">Query</option>
+                </select>
+              </div>
+            </td>
+            <td>
+              <textarea [(ngModel)]="tvsmQuery[item.ID]" [disabled] = "isDisabled[item.ID]" name="tvsmQuery" class="form-control form-control-sm mb-2 mr-sm-2"></textarea>
+            </td>
+            <td>
+              <select [disabled] = "isDisabled[item.ID]" [(ngModel)]="hoqueryToSelected" (change)="selectedHoQueryTo($event)" class="form-control form-control-sm mb-2 mr-sm-2" name="queryto" id="">
+                <option *ngFor="let queryTo of hoQueryToList" [value]="queryTo.no">{{ queryTo.name }}</option>
+              </select>
+            </td>
+            <td>
+              <input [(ngModel)]="creditedDate[item.ID]" type="date" class="form-control form-control-sm mb-2 mr-sm-2" name="creditedDate" >
+            </td>
+            <td>
+              <div *ngIf="actionSelected[item.ID] === 'F'" class="form-group">
+                <input type="submit" (click)="approveRequest(item.ID)" value="Approve" class="btn btn-outline-secondary mb-2 form-control-sm status-update-sec" id="subbtn">
+              </div>
+              <div *ngIf="actionSelected[item.ID] === 'Q'" class="form-group">
+                <input (click)="sendQuery(item)" type="submit" value="Send Query" class="btn btn-outline-secondary mb-2 form-control-sm status-update-sec" id="subbtn">
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <br>
+</div>
+
+<div *ngIf="displayDetailSec">
+  <div>
+      <h4 class="custHomeHead">Documents</h4>
+  </div>
+  <table class="table custDocTable">
+  
+      <tr>
+        <td>Dealer</td>
+        <td>{{ item.CREATED_ON }}</td>
+        <td> -->
+          <!-- <a href="https://www.advantagetvs.com/ReconsiderationAPI/Creation/fileDownload?fileName={{ item.FILENAME}}">{{ item.FILE_NAME }}</a> -->
+          <!-- <a href="http://localhost:51539/Creation/fileDownload?fileName={{ item.FILENAME }}">{{ item.FILE_NAME }}</a> -->
+        <!-- </td>
+      </tr>
+  </table>
+  <div>
+    <h4 class="custHomeHead">Application Details</h4>
+  </div>
+  <div>
+    <p></p>
+    <div class="jumbotron jumbo2">
+      <form>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="claimsettleddate" class="form-control-sm mb-2 mr-sm-2">Claim Settled Date</label>
+            <input disabled [(ngModel)]="claimsettleddate" type="date" class="form-control form-control-sm mb-2 mr-sm-2 app-sec" name="claimsettleddate" placeholder="Claim Settled Date">
+          </div>
+          <div class="form-group">
+            <label for="daysleft" class="form-control-sm mb-2 mr-sm-2">Days left for Reclaiming</label>
+            <input disabled [(ngModel)]="daysleft" type="text" class="form-control form-control-sm mb-2 mr-sm-2 app-sec" name="daysleft" placeholder="Days left for Reasoning">
+          </div>
+          <div class="form-group">
+            <label for="partno" class="form-control-sm mb-2 mr-sm-2">Part Number</label>
+            <input disabled [(ngModel)]="partno" type="text" class="form-control form-control-sm mb-2 mr-sm-2 app-sec" name="partno" placeholder="Part Number">
+          </div>
+          <div class="form-group">
+            <label for="partdesc" class="form-control-sm mb-2 mr-sm-2">Part Description</label>
+            <input disabled [(ngModel)]="partdesc" type="text" class="form-control form-control-sm mb-2 mr-sm-2 app-sec" name="partdesc" placeholder="Part Description">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="frameno" class="form-control-sm mb-2 mr-sm-2">Frame Number</label>
+            <input disabled [(ngModel)]="frameno" type="text" class="form-control form-control-sm mb-2 mr-sm-2 app-sec" name="frameno" placeholder="Frame Number">
+          </div>
+          <div class="form-group">
+            <label for="kms" class="form-control-sm mb-2 mr-sm-2">Kms</label>
+            <input disabled [(ngModel)]="kms" type="text" class="form-control form-control-sm mb-2 mr-sm-2 app-sec" name="kms" placeholder="Kms">
+          </div>
+          <div class="form-group">
+            <label for="salesdate" class="form-control-sm mb-2 mr-sm-2">Sales Date</label>
+            <input disabled [(ngModel)]="salesdate" type="date" class="form-control form-control-sm mb-2 mr-sm-2 app-sec" name="salesdate" placeholder="Sales Date">
+          </div>
+          <div class="form-group">
+            <label for="repairdate" class="form-control-sm mb-2 mr-sm-2">Repair Date</label>
+            <input disabled [(ngModel)]="repairdate" type="date" class="form-control form-control-sm mb-2 mr-sm-2 app-sec" name="repairdate" placeholder="Repair date">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="model" class="form-control-sm mb-2 mr-sm-2">Model</label>
+            <input disabled [(ngModel)]="model" type="text" class="form-control form-control-sm mb-2 mr-sm-2 app-sec" name="model" placeholder="Model">
+          </div>
+          <div class="form-group">
+            <label for="ndprate" class="form-control-sm mb-2 mr-sm-2">NDP Rate</label>
+            <input disabled [(ngModel)]="ndprate" type="text" class="form-control form-control-sm mb-2 mr-sm-2 app-sec" name="ndprate" placeholder="NDP Rate">
+          </div>
+          <div class="form-group">
+            <label for="dealercode" class="form-control-sm mb-2 mr-sm-2">Dealer Code</label>
+            <input disabled [(ngModel)]="dealercode" type="text" class="form-control form-control-sm mb-2 mr-sm-2 app-sec" name="dealercode" placeholder="Dealer Code">
+          </div>
+          <div class="form-group">
+            <label for="dealername" class="form-control-sm mb-2 mr-sm-2">Dealer Name</label>
+            <input disabled [(ngModel)]="dealername" type="text" class="form-control form-control-sm mb-2 mr-sm-2 app-sec" name="dealername" placeholder="Dealer Name">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="reasonforrejection" class="form-control-sm mb-2 mr-sm-2">Reason for Rejection</label>
+            <textarea disabled [(ngModel)]="reasonforrejection" name="reasonforrejection" class="form-control form-control-sm mb-2 mr-sm-2 app-sec" cols="30" rows="3"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="justification" class="form-control-sm mb-2 mr-sm-2">Justification</label>
+            <textarea disabled [(ngModel)]="justification" name="justification" class="form-control form-control-sm mb-2 mr-sm-2 app-sec" cols="30" rows="3"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="city" class="form-control-sm mb-2 mr-sm-2">City</label>
+            <input disabled [(ngModel)]="city" type="text" class="form-control form-control-sm mb-2 mr-sm-2 app-sec" name="city" placeholder="City">
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div>
+    <h4 class="custHomeHead">Escalation Details</h4>
+  </div>
+  <table class="esc-table">
+    <tbody *ngFor="let esc of escalationList">
+      <tr>
+        <td class="esc-data">
+          From: &nbsp; {{ esc.FROM_EMPNAME }}
+        </td>
+        <td class="esc-data">
+          To: &nbsp; {{ esc.TO_EMPNAME }}
+        </td>
+        <td class="esc-data">
+          Date & Time: &nbsp;
+          {{ esc.CREATED_ON | date:'dd-MM-yyyy'}}
+        </td>
+      </tr>
+      <tr>
+        <td class="esc-data remarks-sec" colspan="6">
+          {{ esc.REMARKS }}
+        </td>
+      </tr>
+    </tbody>
+    <br>
+  </table>
+</div> -->

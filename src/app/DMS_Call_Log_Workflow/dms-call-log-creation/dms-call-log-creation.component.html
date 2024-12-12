@@ -1,0 +1,225 @@
+
+<!-- <h4 class="custApprovalHead" style="background-color:#143E67 !important">DMS Call Log Deviation Process</h4>
+<h4 class="redrow"></h4> -->
+<div style="padding:10px">
+<div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
+    <div class="row mb-12">
+        
+        <!-- <div class="form-group col-md-3">
+            <label for="calltype" class="form-control-sm mt-35 mr-sm-2" style="font-weight: bold !important;">Reason for call log</label>
+            <select  class="form-control form-control-sm mb-2 mr-sm-2" 
+            name="calltype"  [(ngModel)]="callLogHeader.CALL_LOG_TYPE_ID" (change)="selectType()">
+            <option value="">Select</option>
+              <option *ngFor="let type of CallLogTypeList" [value]="type.CALL_LOG_TYPE_ID">{{ type.CALL_LOG_TYPE_DESC }}</option>
+            </select>
+            
+          </div> -->
+    </div>
+    
+    <div *ngIf="isSaleDate">
+        <div class="custApprovalHead">Sale Date Change</div>
+        <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12 ">
+            
+               
+                
+            <button class="addBtn mt-10 mr-12 " (click)="addSale()">
+                <img class="mr-12" src="assets/icons/add-blue.png" alt=""> AddNew
+              </button>
+              <div class="inlineTable mt-25">
+                <div class="inlineHeader" style="width:100%">
+                  <div class="head-column" *ngFor="let head of SaleDateHeader;let i = index" 
+                  [ngClass]="head.width">
+                    {{head.name}}
+                  </div>
+                </div>
+                <div class="inlineBody" *ngFor="let item of SaleDateList;let i=index">
+                  
+                    <!-- <div class="inlineColumn">
+                    {{i +1}}
+                </div> -->
+                  <div class="inlineColumn">
+                    <input type="text" class="form-control"  
+                    name="callLogNo" [(ngModel)]="item.DMS_CALL_LOG_NO" (change)="ValidateCall(item,i,'sale')" >
+                  </div>
+                  
+                  <!-- <div class="inlineColumn">
+                    <input type="number" class="form-control"  
+                    name="jbNo" [(ngModel)]="item.JOB_CARD_NO" (change)="getJobCardDetails(item,i,'sale')">
+                  </div> -->
+                  <div class="inlineColumn">
+                    <input type="text" class="form-control"  
+                    name="frameNo" [(ngModel)]="item.FRAME_NUMBER" disabled>
+                  </div>
+                  <div class="inlineColumn">
+                    <input class="form-control"  type="text" 
+                      name="dmssaledate" [(ngModel)]="item.DMS_SALE_DATE"  disabled>
+                  </div>
+                  <div class="inlineColumn">
+                    <input type="date" class="form-control" [max]="getToday()" 
+                    name="actsaldate" [(ngModel)]="item.SALE_DATE_TO_BE_CHANGED" (change)="saleDateValidaion(item,i)">
+                  </div>
+                  <div class="inlineColumn">
+                    <textarea matInput #title placeholder="" 
+                    name="Remarks" style="height:auto;padding:5px" class="textBox"
+                      [(ngModel)]="item.REMARKS" maxlength="30"></textarea>
+                    <!-- <input type="search" class="form-control"  
+                      name="Remarks" [(ngModel)]="item.REMARKS" maxlength="30" 
+                      height="30px" rows="3"> -->
+                  </div>
+                  <div class="inlineColumn">
+
+                    <img src="assets/icons/delete.png" alt="" (click)="deleteSale(i,item)">
+
+               </div>
+                  
+                </div>
+                <!-- <div class="no-record" *ngIf="sparePartList && sparePartList.length == 0">
+                  {{lang?.GENERAL?.noDataDisp}}
+                </div> -->
+              </div>
+          </div>
+    </div>
+    
+    <div *ngIf="isKM">
+        <h4 class="custApprovalHead">KM Change</h4>
+        <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
+            
+               
+                
+            <button class="addBtn mt-10 mr-12" (click)="addKM()">
+                <img class="mr-12" src="assets/icons/add-blue.png" alt=""> AddNew
+              </button>
+              <div class="inlineTable mt-25">
+                  
+                <div class="inlineHeader" style="width:100%">
+                  <div class="head-column" *ngFor="let head of KMHeader;let i = index" 
+                  [ngClass]="head.width">
+                    {{head.name}}
+                  </div>
+                </div>
+                <div class="inlineBody" *ngFor="let item of KMChangeList;let i=index">
+                  <div class="inlineColumn">
+                    <input type="text" class="form-control"  
+                    name="KmcallLogNo" [(ngModel)]="item.DMS_CALL_LOG_NO" (change)="ValidateCall(item,i,'km')">
+                  </div>
+                  
+                  <!-- <div class="inlineColumn">
+                    <input type="text" class="form-control"  
+                    name="kmjbNo" [(ngModel)]="item.JOB_CARD_NO" (change)="getJobCardDetails(item,i,'km')">
+                  </div> -->
+                  <div class="inlineColumn">
+                    <input type="text" class="form-control"  
+                    name="kmframeNo" [(ngModel)]="item.FRAME_NUMBER" disabled>
+                  </div>
+                  <div class="inlineColumn">
+                    <input type="text" class="form-control"  
+                      name="dmskm" [(ngModel)]="item.DMS_KM" disabled>
+                  </div>
+                  <div class="inlineColumn">
+                    <input type="text" class="form-control"  
+                    name="actualkm" [(ngModel)]="item.KM_to_be_CHANGED" (change)="KMValidation(item,i)">
+                  </div>
+                  <div class="inlineColumn">
+                    <textarea matInput #title placeholder="" 
+                    name="kmRemarks" style="height:auto;padding:5px" class="textBox"
+                      [(ngModel)]="item.REMARKS" maxlength="30"></textarea>
+                    <!-- <input type="text" class="form-control"  
+                      name="kmRemarks" [(ngModel)]="item.REMARKS"> -->
+                  </div>
+                  <div class="inlineColumn wmpx-50">
+
+                    <img src="assets/icons/delete.png" alt="" (click)="deleteKM(i,item)">
+
+               </div>
+                  
+                </div>
+                <!-- <div class="no-record" *ngIf="sparePartList && sparePartList.length == 0">
+                  {{lang?.GENERAL?.noDataDisp}}
+                </div> -->
+              </div>
+          </div>
+    </div>
+
+    <div *ngIf="isLock">
+        <h4 class="custApprovalHead">60 Days lock removal</h4>
+        <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12 ">
+            
+               
+                
+            <button class="addBtn mt-10 mr-12" (click)="addLock()">
+                <img class="mr-12" src="assets/icons/add-blue.png" alt="" (click)="addLock()"> AddNew
+              </button>
+              <div class="inlineTable  mt-25" style="margin-bottom: 20px;">
+                  
+                <div class="inlineHeader" style="width:100%">
+                  <div class="head-column" *ngFor="let head of lockHeader;let i = index" 
+                  [ngClass]="head.width">
+                    {{head.name}}
+                  </div>
+                </div>
+                <div class="inlineBody" *ngFor="let item of LockRemovalList;let i=index">
+                  
+                  <div class="inlineColumn">
+                    <input type="text" class="form-control"  
+                    name="lckcallLogNo" [(ngModel)]="item.DMS_CALL_LOG_NO"  (change)="ValidateCall(item,i,'lock')">
+                  </div>
+                  
+                  <!-- <div class="inlineColumn">
+                    <input type="text" class="form-control"  
+                    name="lckjbNo" [(ngModel)]="item.JOB_CARD_NO" (change)="getJobCardDetails(item,i,'lock')">
+                  </div> -->
+                  <div class="inlineColumn">
+                    <input type="text" class="form-control"  
+                    name="lckframeNo" [(ngModel)]="item.FRAME_NUMBER" disabled>
+                  </div>
+                  <div class="inlineColumn">
+                    <input type="date" class="form-control"  disabled
+                      name="jcdate" [(ngModel)]="item.DMS_JOB_CARD_DATE">
+                  </div>
+                
+                  <div class="inlineColumn">
+                    <textarea matInput #title placeholder="" 
+                    name="lckRemarks" style="height:auto;padding:5px" class="textBox"
+                      [(ngModel)]="item.REMARKS" maxlength="30"></textarea>
+                    <!-- <input type="text" class="form-control"  
+                      name="lckRemarks" [(ngModel)]="item.REMARKS"> -->
+                  </div>
+                  <div class="inlineColumn" style="width:20%">
+
+                    <img src="assets/icons/delete.png" alt="" (click)="deleteLock(i,item)">
+
+               </div>
+                  
+                </div>
+                <!-- <div class="no-record" *ngIf="sparePartList && sparePartList.length == 0">
+                  {{lang?.GENERAL?.noDataDisp}}
+                </div> -->
+              </div>
+          </div>
+    </div>
+    <h4 class="custApprovalHead">Approval Seletion</h4>
+    <div class="form-group col-md-3">
+      <label for="tmdrpdwn" class="form-control-sm mr-sm-2" style="font-weight: bold !important;">Forward to TM Service</label>
+      <select   class="form-control form-control-sm mb-2 mr-sm-2" name="tmdrpdwn" id="" [(ngModel)]="tm">
+        <option value="">Select</option>
+        <option *ngFor="let tm of TMList" [value]="tm.empno">{{ tm.empname }}</option>
+      </select>
+    </div>
+    <div class="button">
+        <button class="createBtn mr-12" style=" justify-content: flex-end;margin-bottom: 50px;" 
+        (click)="SaveCallLog()">
+            Submit
+        </button>
+        
+    </div>
+
+    <div style="margin-top:50px">
+
+    </div>
+</div>
+<div style="margin-top:50px">
+
+</div>
+</div>
+
+

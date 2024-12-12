@@ -1,0 +1,182 @@
+<div>
+    <h4 class="custApprovalHead">Super Approval</h4>
+    <div class="tableHeight">
+      <table>
+        <div class="form-row">
+          <div class="form-group col-md-3">
+            <label for="claimsettleddate" class="form-control-sm mb-2 mr-sm-2">From Date</label>
+            <input type="date"  name="Fromdate" placeholder="From Date" [(ngModel)]="fromdate">
+          </div>
+          <div class="form-group col-md-3">
+            <label for="claimsettleddate" class="form-control-sm mb-2 mr-sm-2">To Date</label>
+            <input   type="date" name="todate" placeholder="To Date" [(ngModel)]="todate">
+          </div>
+          <div class="form-group col-md-3">
+            <!-- <label for="partno" class="form-control-sm mb-2 mr-sm-2">Status</label> -->
+            <!-- <select  class="form-control form-control-sm mb-2 mr-sm-2" name="tmdrpdwn" [(ngModel)]="stage">
+              <option  value=" ">Select Status</option>
+              <option  value="Pending">Pending</option>
+              <option  value="Completed">Completed</option>
+              
+            </select> -->
+          
+          </div>
+          <div class="form-group col-md-3">
+            <label for="partno" class="form-control-sm mb-2 mr-sm-2"></label>
+            <input type="button" id="search" name="search"  title="Search" value="Search" 
+            class="form-control form-control-sm mb-2 mr-sm-2" (click)="Search()"> 
+            </div>
+        </div>
+      </table>
+        <table class="table table-bordered table-sm custTable">
+            <thead>
+            <tr>
+                <th>Select</th>
+                <th>Dealer Code</th>
+                <th>Dealer Name</th>
+                <th>Town</th>
+                <th>Order No</th>
+                <th>Claim Settled Date</th>
+                <th>Total Number of Parts taken for special Approval</th>
+                <th>Request letter from Dealer to TM/ASM</th>
+                <th>Request letter from ASM to VP  Service</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let item of superReportData">
+                <td><a role="button" class="selectItem" (click)="getRequestByDetails(item)">Select</a></td>
+                <td>{{ item.DEALER_CODE }}</td>
+                <td>{{ item.DEALER_NAME }}</td>
+                <td>{{ item.TOWN }}</td>
+                <td>{{ item.ORDER_NO }}</td>
+                <td>{{ item.CLAIM_SETTLED_DATE | date:'dd-MM-yyyy'}}</td>
+                <td>{{ item.TOTAL_PARTS }}</td>
+                <td class="view-sec">
+                  <a href="https://www.advantagetvs.com/ReconsiderationAPI/Creation/fileDownload?fileName={{ item.REQUEST_LETTER_DEA_TM_ASM }}">
+                  <!-- <a href="http://localhost:51539/Creation/fileDownload?fileName={{ item.REQUEST_LETTER_DEA_TM_ASM }}"> -->
+                    <img src="..\assets\images\view.png" alt="view">
+                  </a>
+                </td>
+                <td class="view-sec">
+                  <!-- <a href="http://localhost:51539/Creation/fileDownload?fileName={{ item.REQUEST_LETTER_ASM_VP}}"> -->
+                  <a href="https://www.advantagetvs.com/ReconsiderationAPI/Creation/fileDownload?fileName={{ item.REQUEST_LETTER_ASM_VP}}">
+                    <img src="..\assets\images\view.png" alt="view">
+                  </a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <!-- <div>
+        <h4 class="custHomeHead">Query</h4>
+    </div>
+    <form>
+        <div class="row form-row">
+          <div class="form-group col-md-3">
+            <label for="query" class="form-control-sm mb-2 mr-sm-2 approve-sec">Query</label>
+            <textarea [(ngModel)]="query" name="query" class="form-control form-control-sm mb-2 mr-sm-2" cols="30" rows="3"></textarea>
+          </div>&nbsp;&nbsp;&nbsp;
+          <div class="form-group col-md-3">
+            <label for="queryto" class="form-control-sm mb-2 mr-sm-2 approve-sec">Query To :</label>
+            <select [(ngModel)]="querySelected" (change)="selectedQueryTo($event)" class="form-control form-control-sm mb-2 mr-sm-2" name="queryto" id="">
+              <option *ngFor="let queryTo of amQueryToList" [value]="queryTo.no">{{ queryTo.name }}</option>
+            </select>
+          </div>
+          <div class="form-group query-btn">
+            <input type="submit" (click)="sendQuery()" value="Send Query" class="btn btn-outline-secondary mb-2 form-control-sm" id="subbtn">
+          </div>
+        </div>
+    </form> -->
+    <div>
+      <h4 class="custHomeHead">Approval Details</h4>
+  </div>
+    <table class="esc-table">
+      <tbody>
+        <tr>
+          <td class="esc-data">
+            ASM: &nbsp; {{ approval.ASM }}
+          </td>
+          <td class="esc-data">
+            ASM Created Date: &nbsp; {{ approval.CREATED_ON | date:'dd-MM-yyyy'}}
+          </td>
+          <td class="esc-data">
+            ASM Remarks: &nbsp; {{ approval.ASM_REMARKS }}
+          </td>
+        </tr>
+        <tr>
+          <td> </td>
+          <td> </td>
+          <td> </td>
+        </tr>
+        <tr>
+          <td class="esc-data">
+            NSM: &nbsp; {{ approval.NSM }}
+          </td>
+          <td class="esc-data">
+            NSM Approved Date: &nbsp; {{(approval.NSM_APP_DATE!=='0001-01-01T00:00:00')? (approval.NSM_APP_DATE| date:'dd-MM-yyyy'):'' }}
+          </td>
+          <td class="esc-data">
+            NSM Remarks: &nbsp; {{ approval.NSM_REMARKS }}
+          </td>
+        </tr>
+        <tr>
+          <td> </td>
+          <td> </td>
+          <td> </td>
+        </tr>
+        <tr>
+          <td class="esc-data">
+            GMS: &nbsp; {{ approval.GMS }}
+          </td>
+          <td class="esc-data">
+            GMS Approved Date: &nbsp; {{(approval.GMS_APP_DATE!=='0001-01-01T00:00:00')? (approval.GMS_APP_DATE | date:'dd-MM-yyyy'):''}}
+          </td>
+          <td class="esc-data">
+            GMS Remarks: &nbsp; {{ approval.GMS_REMARKS }}
+          </td>
+        </tr>
+        <tr>
+          <td> </td>
+          <td> </td>
+          <td> </td>
+        </tr>
+        <tr>
+          <td class="esc-data">
+            HO : &nbsp; {{ approval.HO }}
+          </td>
+          <td class="esc-data">
+            HO Approved Date: &nbsp; {{(approval.HO_APP_DATE!=='0001-01-01T00:00:00')? (approval.HO_APP_DATE | date:'dd-MM-yyyy'):''}}
+          </td>
+          <td class="esc-data">
+            HO Remarks: &nbsp; {{ approval.HO_REMARKS }}
+          </td>
+        </tr>
+      </tbody>
+      <br>
+    </table>
+    <div>
+        <h4 class="custHomeHead">Escalation Details</h4>
+    </div>
+    <table class="esc-table">
+        <tbody *ngFor="let esc of escalationList">
+          <tr>
+            <td class="esc-data">
+              From: &nbsp; {{ esc.FROM_EMPNAME }}
+            </td>
+            <td class="esc-data">
+              To: &nbsp; {{ esc.TO_EMPNAME }}
+            </td>
+            <td class="esc-data">
+              Date & Time: &nbsp;
+              {{ esc.CREATED_ON | date:'dd-MM-yyyy' }}
+            </td>
+          </tr>
+          <tr>
+            <td class="esc-data remarks-sec" colspan="6">
+              {{ esc.REMARKS }}
+            </td>
+          </tr>
+        </tbody>
+        <br>
+    </table>
+</div>

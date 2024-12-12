@@ -1,0 +1,65 @@
+.custApprovalHead {
+    color: #fff;
+    background-color: #337ab7;
+    border-color: #337ab7;
+    padding: 10px 15px;
+    font-family: Tahoma,Arial,Verdana;
+    font-size: 12px;
+}
+
+.tableHeight {
+    width: 1000px;
+}
+
+.custTable {
+    font-size: 12px;
+    border: 1px solid #ddd;
+    font-family: Tahoma,Arial,Verdana;
+    line-height: 1.42857143;
+}
+
+.custHomeHead {
+    color: #31708f;
+    background-color: #d9edf7;
+    border-color: #bce8f1;
+    padding: 10px 15px;
+    font-family: Tahoma,Arial,Verdana;
+    font-size: 12px;
+}
+
+.approve-sec {
+    display: inline-block;
+    max-width: 100%;
+    margin-bottom: 5px;
+    font-weight: 700;
+    line-height: 3.428571;
+    font-size: 12px;
+}
+
+.query-btn {
+    padding-top: 38px;
+}
+
+.view-sec {
+    text-align: center;
+}
+
+.esc-table {
+    color:#6D7B8D;
+    background-color:White;
+}
+
+.esc-data {
+    font-size: 12px;
+    padding-right: 20px;
+    font-family: Tahoma,Arial,Verdana;
+}
+
+.remarks-sec {
+    padding-top: 2px;
+}
+
+.selectItem {
+    text-decoration: underline;
+    color: blue;
+}

@@ -1,0 +1,218 @@
+
+
+
+
+
+.redrow
+{
+  height: 18px;
+  color: White;
+  font-weight: bold;
+  font-size: 11px;
+  background-color: #EA5607;
+  bottom: 10px;
+}
+.custApprovalHead {
+    color: #fff;
+    background-color: #337ab7;
+    border-color: #337ab7;
+    padding: 18px 15px;
+    font-family: Tahoma,Arial,Verdana;
+    font-size: 17px;
+}
+.divv
+{
+    border: 0.1px solid #9b8ee2;
+    padding: 10px;
+}
+.custHomeHead {
+    color: #31708f;
+    background-color: #d9edf7;
+    border-color: #bce8f1;
+    padding: 10px 15px;
+    font-family: Tahoma,Arial,Verdana;
+    font-size: 12px;
+}
+
+ th {
+vertical-align: inherit !important;
+}
+
+
+.master {
+    padding: 0 !important;
+    display: flex;
+    flex-direction: column;
+    box-shadow: none;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    .masterHeader {
+      padding: 8px 12px !important;
+      display: flex;
+      justify-content: space-between;
+    }
+   
+  }
+  .table {
+    width: 100%;
+    height: auto;
+    max-height: calc(100vh - 220px);
+    overflow: auto;
+    .mat-elevation-z8 {
+      box-shadow: none !important;
+    }
+    table {
+      width: 100%;
+    }
+  }
+  :host ::ng-deep .mat-sort-header-button {
+    text-transform: uppercase;
+    color: #333333;
+    font-family: Ubuntu;
+    font-size: 12px;
+    font-weight: 600;
+    background-color: white !important;
+    
+  }
+    
+// .mat-header-row
+// {
+//     background-color: #3346b1;
+//     border-radius: 10px;
+// }
+
+// .mat-header-cell {
+//     color: white !important;
+// }
+
+ 
+
+//  .mat-row {
+//     display: flex;
+//     border-width: 0;
+//     border-bottom-width: 6px;
+//     border-style: groove;
+//     align-items: center;
+//     box-sizing: border-box;
+   
+//     border-radius: 10px;
+   
+// }
+.example-container {
+  overflow-x: scroll;
+}
+
+.mat-table {
+  background: white;
+  width: fit-content;
+  min-width:100%
+}
+
+.mat-elevation-z8 {
+  box-shadow: 0 5px 5px -3px rgba(0,0,0,.2), 0 8px 10px 1px rgba(0,0,0,.14), 0 3px 14px 2px rgba(0,0,0,.12);
+
+  /* overflow-x: scroll;
+  overflow-y: scroll; */
+  overflow-x: scroll;
+  //margin-top: 3%;
+  background-color: white;
+  
+}
+
+.mat-header-row
+{
+  background-color: #337ab7;
+  border-radius: 0px;
+  min-height:45px !important;
+  //min-width:150px;
+}
+
+.mat-header-cell {
+  color: white !important;
+  //min-width:150px;
+}
+
+
+
+mat-row {
+  display: flex;
+  border-width: 0;
+  border-bottom-width: 1px;
+  border-style: groove;
+  align-items: center;
+  box-sizing: border-box;
+ 
+  border-radius: 5px;
+ 
+}
+ mat-cell{
+   min-width:150px;
+   font-size:12px !important;
+   }
+  
+@media screen and (max-width: 960px) {
+  .mat-table {
+    border: 0;
+    vertical-align: middle
+  }
+
+
+
+  .mat-header-row
+  {
+      visibility: hidden;
+  }
+  .mat-table caption {
+    font-size: 1em;
+  }
+  
+  /*  Enable this to hide header
+  .mat-table .mat-header-cell {
+    
+    border: 10px solid;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+  }
+  */
+  .mat-table .mat-row {
+    border-bottom: 5px solid #ddd;
+    display: block;
+  }
+  /*
+  .mat-table .mat-row:nth-child(even) {background: #CCC}
+  .mat-table .mat-row:nth-child(odd) {background: #FFF}
+  */
+  .mat-table .mat-cell {
+    border-bottom: 1px solid #ddd;
+    display: block;
+    font-size: 1em;
+    text-align: right;
+    font-weight: bold;
+    
+    margin-bottom: 4%;
+  }
+  .mat-table .mat-cell:before {
+    /*
+    * aria-label has no advantage, it won't be read inside a table
+    content: attr(aria-label);
+    */
+    content: attr(data-label);
+    float: left;
+    text-transform: uppercase;
+    font-weight: normal;
+    
+    font-size: .85em;
+  }
+  .mat-table .mat-cell:last-child {
+    border-bottom: 0;
+  }
+    .mat-table .mat-cell:first-child {
+    margin-top: 4%;
+  }
+}
+mat-cell:last-of-type, mat-footer-cell:last-of-type, mat-header-cell:last-of-type {
+  padding-right: 0px !important;
+}
