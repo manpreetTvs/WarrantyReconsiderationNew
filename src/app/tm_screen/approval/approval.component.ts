@@ -19,6 +19,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatTabsModule } from '@angular/material/tabs';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { SuperPendingApprovalComponent } from '../super-pending-approval/super-pending-approval.component';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { PendingApprovalComponent } from '../pending-approval/pending-approval.component';
 import { ApproverReportComponent } from '../approver-report/approver-report.component';
 import { DealerQueryComponent } from '../../dealer-query/dealer-query.component';
@@ -28,6 +29,7 @@ import { SuperPendingQueryComponent } from '../super-pending-query/super-pending
 import { SuperReportComponent } from '../super-report/super-report.component';
 import { DmsApprovalComponent } from '../../DMS_Call_Log_Workflow/dms-approval/dms-approval.component';
 import { FrameCheckComponent } from '../../frame-check/frame-check.component';
+import { FilterDateComponent, FilterInputComponent, FilterSelectComponent } from '../../shared/table-filter/table-filter.component';
 
 
 @Component({
@@ -62,7 +64,13 @@ import { FrameCheckComponent } from '../../frame-check/frame-check.component';
     SuperPendingQueryComponent,
     SuperReportComponent,
     DmsApprovalComponent,
-    FrameCheckComponent
+    FrameCheckComponent,
+
+    FilterInputComponent,
+    FilterSelectComponent,
+    FilterDateComponent,
+    CalendarModule
+
 
   ]
 
@@ -107,13 +115,13 @@ export class ApprovalComponent implements OnInit {
 
   }
 
-  // ngAfterViewInit(){   // manpreet
-  //   $('.dropdown-content a').click(function(){
-  //     $('.dropdown-content a').removeClass('active');
-  //     //$(this).addClass('active');
-  //     });
-  //     //this.getPendingList();
-  // }
+  ngAfterViewInit(){   // manpreet
+    $('.dropdown-content a').click(function(){
+      $('.dropdown-content a').removeClass('active');
+      //$(this).addClass('active');
+      });
+      //this.getPendingList();
+  }
  
   pending()
   {
@@ -135,7 +143,6 @@ export class ApprovalComponent implements OnInit {
           this.getEmployeeDetails();
           this.empname = localStorage.getItem('empname') || '';
           //this.empname = "Manpreet"
-          debugger;
           
         }
        

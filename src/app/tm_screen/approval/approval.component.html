@@ -1,18 +1,15 @@
-<nav class="navbar navbar-light justify-content-between navBg">
+<nav class="navbar navbar-light justify-content-between navBg d-flex align-items-center">
     <a class="navbar-brand"><h5 class="custH5">Reconsideration of Rejected Warranty</h5></a>
     <img class="mr-sm-2" src="..\assets\images\corp-tvs-logo.png" alt="Logo" width="20%">
 </nav>
 
 <div>
     <p class="custMenu">Welcome {{empname}}</p>
-     <ul class="nav navbar-light bg-light custNavMenu" role="tablist">
-        <li class="nav-item">
-            <a class="nav-link active"   data-toggle="pill" href="#home" >Home</a>
+     <ul class="nav navbar-light bg-light custNavMenu d-flex flex-row align-items-center" role="tablist">
+        <li class="nav-item mr-3">
+            <a class="nav-link active" data-toggle="pill" href="#home" >Home</a>
         </li>
-    
-         
-
-        <li *ngIf="role !== 'NSM' && role !== 'GMS'" class="nav-item dropdown"  >
+       <li *ngIf="role !== 'NSM' && role !== 'GMS'" class="nav-item dropdown mr-3"  >
             <a class="nav-link dropdown-toggle dropbtn">Approve </a>
             
             <div class="dropdown-content">
@@ -21,13 +18,13 @@
             </div>
         </li>
         
-        <li *ngIf="role !== 'NSM' && role !== 'GMS'" class="nav-item dropdown">
+        <li *ngIf="role !== 'NSM' && role !== 'GMS'" class="nav-item dropdown mr-3">
             <a class="nav-link dropdown-toggle dropbtn">Report</a>
             <div class="dropdown-content">
                 <a data-toggle="pill" href="#completed">Order Report</a>
             </div>
         </li>
-        <li *ngIf="role !== 'TM'" class="nav-item dropdown">
+        <li *ngIf="role !== 'TM'" class="nav-item dropdown mr-3">
             <a class="nav-link dropdown-toggle dropbtn">Super Approval</a>
             <div class="dropdown-content">
                 <a *ngIf="role === 'AM'" data-toggle="pill" 
@@ -38,7 +35,7 @@
                 <a data-toggle="pill" href="#superReport"> Super Report</a>
             </div>
         </li>
-        <li *ngIf="role === 'TM' || role=== 'AM'" class="nav-item dropdown">
+        <li *ngIf="role === 'TM' || role=== 'AM'" class="nav-item dropdown mr-3">
             <a class="nav-link dropdown-toggle dropbtn">DMS Call log Approval</a>
             <div class="dropdown-content">
                 <a  data-toggle="pill" 
@@ -51,13 +48,12 @@
         </li>
         <li class="nav-item">
             <a class="nav-link" data-toggle="pill" href="#menu2">Logout</a>
-        </li>
+        </li> 
     </ul> 
 </div>
 
 <br>
-
- <div class="tab-content">
+<div class="tab-content">
     <div id="home" class="tab-pane active">
         <div>
             <h4 class="custHomeHead">Donwloads</h4>
@@ -89,6 +85,7 @@
 
         </ul>
     </div>
+    
     <div *ngIf="role !== 'NSM' && role !== 'GMS'" id="pending" class="tab-pane fade" >
         <app-pending-approval></app-pending-approval>
     </div>
@@ -120,4 +117,4 @@
         <app-frame-check></app-frame-check>
     </div>
     
-</div> 
+</div>   

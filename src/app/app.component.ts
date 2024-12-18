@@ -7,7 +7,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import {  } from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatDatepickerModule } from '@angular/material/datepicker';
@@ -15,6 +15,7 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { CommonModule, DatePipe } from '@angular/common';
 import { ApprovalComponent } from './tm_screen/approval/approval.component';
 import { RouterModule, RouterOutlet } from '@angular/router';
+import { TabsModule } from 'ngx-bootstrap/tabs';
 
 @Component({
   standalone: true,
@@ -46,10 +47,20 @@ import { RouterModule, RouterOutlet } from '@angular/router';
     ApprovalComponent,
     RouterOutlet,
     DatePipe,
-    RouterModule
+    RouterModule,
+    // BrowserAnimationsModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    MatTableModule,
+    MatFormFieldModule,
+    MatTabsModule,
+    // TabsModule.forRoot(),
+    MatInputModule,
+    MatDatepickerModule,
   ],
   providers: [
-    DatePipe
+    DatePipe,
+    { provide: TabsModule, useFactory: TabsModule.forRoot }
   ]
 })
 export class AppComponent {
